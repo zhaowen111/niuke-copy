@@ -18,13 +18,12 @@ function handleTabChange(tab) {
 </script>
 
 <template>
-  <!-- 模拟手机 -->
-  <img>
+  <LoadingPage :img="img" canSkip></LoadingPage>
   <RouterView />
   <div class="fixed bottom-0 w-full bg-white">
     <Tabs :tabs @change="handleTabChange" default="/" />
   </div>
-  <LoadingPage :img="img" canSkip></LoadingPage>
+
 </template>
 
 <style scoped>
