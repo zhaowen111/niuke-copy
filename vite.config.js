@@ -16,4 +16,7 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
+  base: process.env.NODE_ENV === 'production'
+    ? '/niuke-copy/'  // 替换为你的仓库名
+    : '/'
 })
