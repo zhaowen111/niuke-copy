@@ -1,23 +1,30 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { RouterLink, RouterView, useRouter } from 'vue-router'
+import Tabs from './packages/Tabs/Tabs.vue';
+import LoadingPage from './packages/LoadingPage/LoadingPage.vue';
+import img from '@/assets/loading.jpg';
+//路由
+const tabs = [{ name: '首页', value: "/", }, { name: '产品页', value: '/about' }, { name: '关于我们', value: 3, badge: 1 }, { name: '联系方式', value: 4 }]
+const router = useRouter();
+
+
+
+function handleTabChange(tab) {
+  router.push(tab.value);
+  if (tab.badge) {
+    tab.badge = null;
+  }
+}
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
+  <!-- 模拟手机 -->
+  <img>
   <RouterView />
+  <div class="fixed bottom-0 w-full bg-white">
+    <Tabs :tabs @change="handleTabChange" default="/" />
+  </div>
+  <LoadingPage :img="img" canSkip></LoadingPage>
 </template>
 
 <style scoped>
