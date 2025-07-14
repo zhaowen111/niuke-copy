@@ -1,29 +1,41 @@
 <script setup>
 import { RouterLink, RouterView, useRouter } from 'vue-router'
-import Tabs from './packages/Tabs/Tabs.vue';
-import LoadingPage from './packages/LoadingPage/LoadingPage.vue';
-import img from '@/assets/loading.jpg';
+import Tabs from '@/packages/Tabs/Tabs.vue'
+import LoadingPage from '@/packages/LoadingPage/LoadingPage.vue'
+import img from '@/assets/loading.jpg'
+import FadeTransition from './components/FadeTransition.vue'
+
 //路由
-const tabs = [{ name: '首页', value: "/", }, { name: '产品页', value: '/about' }, { name: '关于我们', value: 3, badge: 1 }, { name: '联系方式', value: 4 }]
-const router = useRouter();
-
-
+const tabs = [
+  { name: '首页', value: '/' },
+  { name: '产品页', value: '/about' },
+  { name: '关于我们', value: '/animation', badge: 1 },
+  { name: '联系方式', value: '/test' },
+]
+const router = useRouter()
 
 function handleTabChange(tab) {
-  router.push(tab.value);
+  router.push(tab.value)
   if (tab.badge) {
-    tab.badge = null;
+    tab.badge = null
   }
 }
 </script>
 
 <template>
-  <LoadingPage :img="img" canSkip></LoadingPage>
-  <RouterView />
-  <div class="fixed bottom-0 w-full bg-white">
-    <Tabs :tabs @change="handleTabChange" default="/" />
+  <!-- <LoadingPage :img="img" canSkip></LoadingPage> -->
+  <div class="h-dvh w-dvw overflow-hidden px-2">
+    <RouterView v-slot="{ Component, route }">
+      <FadeTransition>
+        <KeepAlive>
+          <component :is="Component" />
+        </KeepAlive>
+      </FadeTransition>
+    </RouterView>
+    <div class="fixed bottom-0 w-full bg-white">
+      <Tabs :tabs @change="handleTabChange" default="/" />
+    </div>
   </div>
-
 </template>
 
 <style scoped>

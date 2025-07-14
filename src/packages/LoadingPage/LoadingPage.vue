@@ -16,17 +16,11 @@ export default {
   },
   mounted() {
     intervalId = setInterval(() => {
-      console.log(this.remainingTime);
-      console.log(intervalId);
       this.remainingTime -= 1000;
       if (this.remainingTime <= 0) {
         clearInterval(intervalId);
       }
     }, 1000);
-  },
-  unmounted() {
-    console.log("unmounted");
-
   },
   methods: {
     handleClick() {
