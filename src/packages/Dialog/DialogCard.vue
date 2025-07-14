@@ -6,7 +6,7 @@ export default {
     show: Boolean,
     title: String,
   },
-  emits: ['closePage'],
+  emits: ['closePage', 'open'],
   data() {
     return {
       style: getIconStyle(closeImg),
@@ -15,6 +15,11 @@ export default {
   computed: {
     showStyle() {
       return this.show ? { bottom: '0' } : {}
+    },
+  },
+  watch: {
+    show(newVal) {
+      newVal && this.$emit('open')
     },
   },
   methods: {

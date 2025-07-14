@@ -1,37 +1,35 @@
 <script>
-import gsap from 'gsap'
 // 拖拽、
 export default {
   props: {
     title: String,
     tip: String,
     deleteable: Boolean,
+    extraRef: [String, Number],
+    dashed: {
+      type: Boolean,
+      default: true,
+    },
     //[{name:'内推',value:1,type:1,show:false}]
     tabs: Array,
   },
   data() {
     return {}
   },
+  mounted() {
+    this.$emit('init', this.extraRef, this.$refs[this.extraRef])
+  },
   methods: {
-    async exchangeItem(itemIndex, sourceRef, targetRef, sourceList, targetList) {
-      const sourceData = sourceList.splice(itemIndex, 1)[0]
-      const target = this.$refs[targetRef]
-      const cur = this.$refs[sourceRef][0]
-      await this.move(cur, target, this.duration)
-      targetList.push(sourceData)
+    handleClick(tab, index) {
+      const cur = this.$refs[tab.value][0]
+      const target = this.$refs[this.extraRef]
+      this.$emit('clickItem', tab, index, cur, target)
     },
-    async move(el, target, duration) {
-      const elRect = el.getBoundingClientRect()
-      const targetRect = target.getBoundingClientRect()
-      const x = targetRect.left - elRect.left
-      const y = targetRect.top - elRect.top
-      return gsap.to(el, {
-        x,
-        y,
-        duration,
-      })
+    handleDelete(tab, index) {
+      const cur = this.$refs[tab.value][0]
+      const target = this.$refs[this.extraRef]
+      this.$emit('delete', tab, index, cur, target)
     },
-    handleClick() {},
   },
 }
 </script>
@@ -42,14 +40,24 @@ export default {
       <span class="text-[#545859]">{{ tip }}</span>
     </header>
     <div class="flex flex-wrap items-center justify-start">
-      <div
-        @click="handleClick"
-        :key="tab.value"
-        v-for="tab in tabs"
-        class="custom-dashed-border mx-[1.5%] my-1 flex w-[30%] items-center justify-center py-1 text-[#333559]">
-        {{ tab.name }}
-        <div v-if="deleteable" @click="$emit('delete')" class=""></div>
-      </div>
+      <transition-group :duration="300">
+        <div
+          @click="handleClick(tab, index)"
+          :key="tab.value"
+          :ref="tab.value"
+          v-for="(tab, index) in tabs"
+          :class="dashed ? 'custom-dashed-border' : 'rounded-[4px] bg-[#0001]'"
+          class="relative mx-[1.5%] my-1 flex w-[30%] items-center justify-center py-1 text-[#333559]">
+          {{ tab.name }}
+          <div
+            v-if="deleteable"
+            @click="handleDelete(tab, index)"
+            class="absolute -top-1 -right-1 h-[20px] w-[20px] rotate-45 rounded-full bg-[#0003] text-center leading-[20px] text-white">
+            +
+          </div>
+        </div>
+      </transition-group>
+      <div v-if="extraRef" :ref="extraRef" class="mx-[1.5%] my-1 py-1"></div>
     </div>
   </div>
 </template>

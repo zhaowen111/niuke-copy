@@ -65,19 +65,24 @@ export default {
       const sourceData = sourceList.splice(itemIndex, 1)[0]
       const target = this.$refs[targetRef]
       const cur = this.$refs[sourceRef][0]
-      await this.move(cur, target, this.duration)
       targetList.push(sourceData)
+      this.move(cur, target, this.duration / 1000)
     },
     async move(el, target, duration) {
       const elRect = el.getBoundingClientRect()
       const targetRect = target.getBoundingClientRect()
       const x = targetRect.left - elRect.left
       const y = targetRect.top - elRect.top
-      return gsap.to(el, {
-        x,
-        y,
-        duration,
-      })
+
+
+      return gsap
+        .to(el, {
+          x,
+          y,
+          duration,
+          onComplete() {},
+        })
+        .then()
     },
   },
 }
@@ -89,7 +94,7 @@ export default {
         <div
           @click="handleClick1(item, index)"
           :ref="item"
-          class="itemmm m-[1.5%] w-[30%] bg-amber-200 text-center"
+          class="m-[1.5%] w-[30%] bg-amber-200 text-center"
           :class="item"
           :key="item"
           v-for="(item, index) in list1">
@@ -116,8 +121,5 @@ export default {
 <style>
 .list {
   border: 1px solid black;
-}
-.itemmm {
-  transition: all;
 }
 </style>
