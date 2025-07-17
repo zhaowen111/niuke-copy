@@ -8,7 +8,6 @@ import { useHomeStore } from '@/stores/counter'
 import { mapState, mapWritableState } from 'pinia'
 
 export default {
-  mixins: [LifeCycleMixin],
   props: {},
   components: {
     ReduceRecommend,
@@ -52,6 +51,9 @@ export default {
       this.scrollTop = event.target.scrollTop
       console.log(this.scrollTop)
     }, 200),
+    handleZan(val, item) {
+      item.stats.likes = val
+    },
   },
 }
 </script>
@@ -59,7 +61,11 @@ export default {
 <template>
   <div class="h-full overflow-y-scroll" ref="recommendContainer" @scroll.self="handleScroll">
     <div>
-      <Posts :post="item" v-for="item in posts" @openReduce="handleClickReduce"></Posts>
+      <Posts
+        :post="item"
+        v-for="item in posts"
+        @openReduce="handleClickReduce"
+        @zan="val => handleZan(val, item)"></Posts>
     </div>
     <ReduceRecommend
       :show="showReduceRecommend"

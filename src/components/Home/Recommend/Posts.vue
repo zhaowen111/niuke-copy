@@ -1,13 +1,20 @@
 <script>
 import Icon from '@/packages/Icon.vue'
 import { getNumberText } from '@/utils/utils'
+import { gsap } from 'gsap'
+import { nextTick } from 'vue'
 
 export default {
   props: {
     post: Object,
   },
-  emits: ['openReduce'],
+  emits: ['openReduce', 'zan'],
   components: { Icon },
+  data() {
+    return {
+      zan: false,
+    }
+  },
   computed: {
     comment() {
       return this.post.comments[0]
@@ -15,6 +22,17 @@ export default {
   },
   methods: {
     getNumberText,
+    async handleClickZan() {
+      const likes = this.zan ? this.post.stats.likes - 1 : this.post.stats.likes + 1
+      this.$emit('zan', likes)
+      this.zan = !this.zan
+      await nextTick()
+      if (this.zan) {
+        const zanIcon = this.$refs['zanIcon'].$el
+        await gsap.to(zanIcon, { scale: 1.4, y: -5, duration: 0.2 })
+        await gsap.to(zanIcon, { scale: 1, y: 0, duration: 0.2 })
+      }
+    },
   },
 }
 </script>
@@ -63,11 +81,15 @@ export default {
         <Icon class="mb-[1px] mr-1" name="comment" size="14" />
         <div>{{ getNumberText(post.stats.comments) }}</div>
       </div>
-      <div class="mt-2 flex items-center text-sm text-[#7778aa]">
-        <Icon class="mb-[1px] mr-1" name="zan" size="15" />
+      <div @click.stop="handleClickZan" :class="zan ? 'zan' : ''" class="mt-2 flex items-center text-sm text-[#7778aa]">
+        <Icon class="mb-[1px] mr-1" name="zan" size="15" ref="zanIcon" />
         <div>{{ getNumberText(post.stats.likes) }}</div>
       </div>
     </aside>
   </div>
 </template>
-<style></style>
+<style scoped>
+.zan {
+  color: #06f4ba;
+}
+</style>
