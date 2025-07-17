@@ -1,6 +1,6 @@
 <script>
 import Test from '@/views/NotFound.vue'
-import IconAnimate from '@/components/IconAnimate.vue'
+import IconAnimate from '@/components/Common/IconAnimate.vue'
 export default {
   components: {
     Test,

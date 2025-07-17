@@ -5,7 +5,7 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 import Icon from './packages/Icon.vue'
-import Message from './packages/message'
+import Message from './packages/Dialog/message'
 
 const app = createApp(App)
 app.use(Message)

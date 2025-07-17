@@ -6,6 +6,7 @@ export default {
   props: {
     post: Object,
   },
+  emits: ['openReduce'],
   components: { Icon },
   computed: {
     comment() {
@@ -18,8 +19,9 @@ export default {
 }
 </script>
 <template>
-  <div class="posts-container m-2 overflow-hidden rounded-xl bg-white p-2">
-    <header class="flex h-10 items-center">
+  <div class="posts-container m-2 overflow-hidden rounded-xl bg-white p-4">
+    <!-- 标题栏 -->
+    <header class="relative flex h-10 items-center">
       <div>
         <img class="h-8 w-8 rounded-full" :src="post.author.avatar" alt="" />
       </div>
@@ -34,7 +36,7 @@ export default {
           <span class="pr-2 text-xs text-[#a7a8aa]">{{ post.author.major }}</span>
         </div>
       </div>
-      <Icon class="absolute right-0 top-0 h-4 w-4" name="menu-small" />
+      <Icon class="absolute right-0 top-0 h-4 w-4" name="menu-small" @click="$emit('openReduce', post.id)" />
     </header>
     <!-- 帖子简要内容 -->
     <main class="text-sm">

@@ -6,6 +6,7 @@ import gsap from 'gsap'
 import SearchArea from '../../components/Home/SearchArea.vue'
 import { RouterView } from 'vue-router'
 import { tabType, defaultTabs, allTabItems, MyTabId } from '@/assets/mock/tabData'
+import { defaultHomeChildPath } from '@/router'
 
 export default {
   components: { TabMore, DialogCard, TabArea, SearchArea, RouterView },
@@ -18,14 +19,19 @@ export default {
       duration: 0.3,
       targets: {},
       parentPath: '',
+      childPath: '',
+      max: 8, //额外tab栏上限
     }
   },
-
   beforeRouteEnter(to, from, next) {
     const parentPath = to.fullPath.split('/')[1]
-
     next(vm => {
       vm.parentPath = parentPath
+      if (vm.childPath) {
+        vm.handleTabChange(vm.childPath)
+      } else {
+        vm.handleTabChange({ value: defaultHomeChildPath })
+      }
     })
   },
   computed: {
@@ -47,14 +53,20 @@ export default {
       const my = result[MyTabId]
       delete result[MyTabId]
       this.tabAreaData = [my, result]
-      this.$showMessage('haha', 3000)
     },
+    // tab变化触发路由
     handleTabChange(tab) {
+      if (!this.parentPath) return
       const routepath = `/${this.parentPath}${tab.value}`
-
+      this.childPath = tab
       this.$router.push(routepath)
     },
     async handleClickItem(tab, index, cur, target) {
+      if (this.tabAreaData[0].tabs.length >= this.max) {
+        this.$message(`最多选择${this.max}个标签哦~`, 1500)
+        return
+      }
+
       this.targets[tab.type] = target
       tab.has = true
 
@@ -105,18 +117,30 @@ export default {
 </script>
 
 <template>
-  <div>
-    <SearchArea />
-    <div class="relative">
-      <TabMore :tabs @change="handleTabChange" />
-      <!-- 编辑板块 -->
-      <div
-        @click="showTabArea = !showTabArea"
-        class="textwh bg-linear-to-r absolute right-0 top-1/2 flex h-[40px] w-[40px] -translate-y-1/2 items-center justify-end from-[#d2faf233] to-[#b9f5fd]">
-        <Icon class="mb-0.5" name="menu" size="18" />
+  <div class="h-full overflow-hidden">
+    <div class="h-22 w-full overflow-hidden">
+      <SearchArea class="h-10" />
+      <div class="relative">
+        <TabMore :tabs @change="handleTabChange" class="h-10" />
+        <!-- 按钮-编辑板块 -->
+        <div
+          @click="showTabArea = !showTabArea"
+          class="textwh bg-linear-to-r absolute right-0 top-1/2 flex h-[40px] w-[40px] -translate-y-1/2 items-center justify-end from-[#d2faf233] to-[#b9f5fd]">
+          <Icon class="mb-0.5" name="menu" size="18" />
+        </div>
       </div>
     </div>
-    <RouterView></RouterView>
+
+    <!-- 页面内容 -->
+    <div class="box-border overflow-hidden pb-2" :style="{ height: 'calc(100% - 5.5rem)' }">
+      <RouterView v-slot="{ Component }">
+        <KeepAlive>
+          <component :is="Component" />
+        </KeepAlive>
+      </RouterView>
+    </div>
+
+    <!-- 弹窗-编辑tab内容 -->
     <DialogCard @open="handleOpen" title="编辑板块" :show="showTabArea" @closePage="handleEditedTab">
       <TabArea
         v-if="tabAreaData.length"

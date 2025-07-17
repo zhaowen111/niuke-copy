@@ -1,4 +1,5 @@
 import { fileURLToPath, URL } from 'node:url'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -8,6 +9,7 @@ import TurboConsole from 'unplugin-turbo-console/vite'
 export default defineConfig({
   plugins: [
     vue(),
+    vueJsx(),
     vueDevTools(),
     tailwindcss(),
     {

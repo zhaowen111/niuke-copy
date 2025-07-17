@@ -98,7 +98,7 @@ export default {
 }
 </script>
 <template>
-  <div class="Tab-More-Container no-scrollbar flex h-[40px] items-center overflow-x-scroll">
+  <div class="Tab-More-Container no-scrollbar flex items-center overflow-x-scroll">
     <div class="Tab-More-Content relative flex h-full items-center justify-start pr-4">
       <div
         :key="tab.value"

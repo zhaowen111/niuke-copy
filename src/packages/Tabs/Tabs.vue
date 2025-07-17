@@ -1,7 +1,7 @@
 <script>
 import { defineComponent } from 'vue'
 import {} from 'gsap'
-import IconAnimate from '@/components/IconAnimate.vue'
+import IconAnimate from '@/components/Common/IconAnimate.vue'
 const defaultActiveStyle = {
   color: '#00dcb0',
   background: 'white',
@@ -39,10 +39,10 @@ export default defineComponent({
 })
 </script>
 <template>
-  <div class="flex h-[60px] items-center justify-center overflow-hidden">
+  <div class="flex h-full items-center justify-center overflow-hidden">
     <div
       :key="tab.value"
-      class="relative -mt-2 box-border flex max-w-1/3 flex-auto flex-col items-center text-center text-xs text-[#565759]"
+      class="max-w-1/3 relative -mt-2 box-border flex flex-auto flex-col items-center text-center text-xs text-[#565759]"
       :style="activeTab === tab.value ? style : {}"
       v-for="tab in tabs"
       @click="change(tab)">
@@ -50,7 +50,7 @@ export default defineComponent({
       <span class="mt-[-15px] flex scale-75">{{ tab.name }}</span>
       <span
         v-if="tab.badge"
-        class="absolute top-[10px] right-[10px] box-border inline-block size-[15px] rounded-[50%] bg-red-600 leading-[15px] text-white">
+        class="absolute right-[10px] top-[10px] box-border inline-block size-[15px] rounded-[50%] bg-red-600 leading-[15px] text-white">
         {{ tab.badge }}
       </span>
     </div>

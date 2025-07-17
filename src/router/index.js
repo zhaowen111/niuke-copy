@@ -1,14 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/Home/HomeView.vue'
 import AnimationExp from '@/components/transition-example/AnimationExp.vue'
-import Test from '@/views/Test.vue'
+import Test from '@/views/QuestionBank/Test.vue'
 import { defaultTabs, allTabItems } from '@/assets/mock/tabData'
 import NotFound from '@/views/NotFound.vue'
 
-//roullup的静态分析无法支持包含运行时变量的导入
-const modules = import.meta.glob(['@/views/Home/Children/*.vue']);
-console.log(modules);
-
+export const defaultHomeChildPath = 'Recommend'
 
 const routes = [
   {
@@ -19,12 +16,6 @@ const routes = [
     path: '/home',
     component: HomeView,
     children: [
-      {
-        path: '',
-        name: 'default',
-        redirect: '/home/Recommend'
-      },
-
       {
         path: 'Attention', // 去掉了开头的斜杠
         component: () => import('@/views/Home/Children/Attention.vue')
@@ -138,7 +129,7 @@ const routes = [
   },
   {
     path: '/about',
-    component: () => import('../views/AboutView.vue'),
+    component: () => import('../views/Business/AboutView.vue'),
   },
   {
     path: '/animation',
