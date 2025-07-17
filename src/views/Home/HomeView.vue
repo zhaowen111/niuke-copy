@@ -118,8 +118,8 @@ export default {
 
 <template>
   <div class="h-full overflow-hidden">
-    <div class="h-22 w-full overflow-hidden">
-      <SearchArea class="h-10" />
+    <div class="h-22 w-full">
+      <SearchArea />
       <div class="relative">
         <TabMore :tabs @change="handleTabChange" class="h-10" />
         <!-- 按钮-编辑板块 -->

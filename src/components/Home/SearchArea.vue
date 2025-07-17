@@ -25,7 +25,7 @@ export default {
 }
 </script>
 <template>
-  <div class="relative m-2 mb-0 flex h-10 items-center justify-between">
+  <div class="relative flex h-12 items-center justify-between p-2 pb-0">
     <SearchBox></SearchBox>
     <div class="flex h-full items-center">
       <div @click="handleClickXinzi" class="ml-2 flex h-full flex-col items-center justify-end">
