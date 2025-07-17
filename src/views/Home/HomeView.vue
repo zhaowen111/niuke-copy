@@ -1,57 +1,32 @@
 <script>
-import TabMore from '@/packages/Tabs/TabMore.vue'
-import menuImg from '@/assets/menu.svg?no-inline'
-import DialogCard from '../../packages/Dialog/DialogCard.vue'
-import TabArea from './TabArea.vue'
+import TabMore from '@/components/Home/TabMore.vue'
+import DialogCard from '../../components/Home/DialogCard.vue'
+import TabArea from '../../components/Home/TabArea.vue'
 import gsap from 'gsap'
+import SearchArea from '../../components/Home/SearchArea.vue'
+import { RouterView } from 'vue-router'
+import { tabType, defaultTabs, allTabItems, MyTabId } from '@/assets/mock/tabData'
 
-const defaultTabs = [
-  { value: 1, name: '关注', type: 0, default: true },
-  { value: 2, name: '推荐', type: 0 },
-  { value: 3, name: '秋招季', type: 0 },
-  { value: 4, name: '热榜', type: 0 },
-]
-const tabType = {
-  10001: { title: '我的', value: 10001, tip: '可拖拽调整tab顺序', tabs: [] },
-  10002: { title: '看板块', value: 10002, tip: '选择感兴趣的板块', tabs: [] },
-  10003: { title: '看岗位', value: 10003, tip: '选择感兴趣的职位', tabs: [] },
-}
 export default {
-  components: { TabMore, DialogCard, TabArea },
+  components: { TabMore, DialogCard, TabArea, SearchArea, RouterView },
   data() {
     return {
-      allTabItems: [
-        // 看板块（type:1）
-        { value: 101, name: '内推', type: 10002, has: true },
-        { value: 102, name: '职场', type: 10002, has: true },
-        { value: 103, name: '求职攻略', type: 10002, has: true },
-        { value: 104, name: '知识分享', type: 10002, has: true },
-        { value: 105, name: '薪资待遇', type: 10002, has: false },
-        { value: 106, name: '面经', type: 10002, has: false },
-
-        // 看岗位（type:2）
-        { value: 201, name: '前端', type: 10003, has: false },
-        { value: 202, name: 'Java', type: 10003, has: false },
-        { value: 203, name: 'C++', type: 10003, has: false },
-        { value: 204, name: '产品经理', type: 10003, has: false },
-        { value: 205, name: '算法', type: 10003, has: false },
-        { value: 206, name: '运营', type: 10003, has: false },
-        { value: 207, name: '测试', type: 10003, has: false },
-        { value: 208, name: '数据分析师', type: 10003, has: false },
-        { value: 209, name: 'Web前端', type: 10003, has: false },
-        { value: 210, name: '财务', type: 10003, has: false },
-        { value: 211, name: '运维', type: 10003, has: false },
-        { value: 212, name: '后端', type: 10003, has: false },
-        { value: 213, name: '安卓', type: 10003, has: false },
-        { value: 214, name: '自动化', type: 10003, has: false },
-        { value: 215, name: '大数据开发', type: 10003, has: false },
-      ],
+      allTabItems: allTabItems,
       tabAreaData: [],
-      menuStyle: { backgroundImage: `url('${menuImg}')` },
-      show: false,
+      menuStyle: null,
+      showTabArea: false,
       duration: 0.3,
       targets: {},
+      parentPath: '',
     }
+  },
+
+  beforeRouteEnter(to, from, next) {
+    const parentPath = to.fullPath.split('/')[1]
+
+    next(vm => {
+      vm.parentPath = parentPath
+    })
   },
   computed: {
     tabs() {
@@ -60,38 +35,49 @@ export default {
   },
   methods: {
     handleOpen() {
-      console.log(111)
-
       const result = JSON.parse(JSON.stringify(tabType))
       this.allTabItems.forEach(item => {
         if (item.has) {
-          result[10001].tabs.push(item)
+          result[MyTabId].tabs.push({ ...item })
         } else {
-          result[item.type].tabs.push(item)
+          result[item.type].tabs.push({ ...item })
         }
       })
-      const my = result[10001]
-      delete result[10001]
+
+      const my = result[MyTabId]
+      delete result[MyTabId]
       this.tabAreaData = [my, result]
-      console.log(this.tabAreaData)
+      this.$showMessage('haha', 3000)
     },
-    handleClick() {
-      this.show = !this.show
+    handleTabChange(tab) {
+      const routepath = `/${this.parentPath}${tab.value}`
+
+      this.$router.push(routepath)
     },
     async handleClickItem(tab, index, cur, target) {
       this.targets[tab.type] = target
       tab.has = true
 
       this.tabAreaData[1][tab.type].tabs.splice(index, 1)
-      await this.move(cur, this.targets[tabType[10001].value], this.duration)
+      await this.move(cur, this.targets[tabType[MyTabId].value], this.duration)
       this.tabAreaData[0].tabs.push(tab)
     },
     async handleDelete(tab, index, cur, target) {
-      this.targets[tabType[10001]] = target
+      this.targets[tabType[MyTabId]] = target
       tab.has = false
       this.tabAreaData[0].tabs.splice(index, 1)
       await this.move(cur, this.targets[tab.type], this.duration)
       this.tabAreaData[1][tab.type].tabs.push(tab)
+    },
+    handleEditedTab() {
+      const my = this.tabAreaData[0]
+      const others = this.tabAreaData[1]
+      let result = [...my.tabs]
+      for (const key in others) {
+        result = result.concat(others[key].tabs)
+      }
+      this.allTabItems = result
+      this.showTabArea = !this.showTabArea
     },
     handleInit(ref, target) {
       this.targets[ref] = target
@@ -108,8 +94,6 @@ export default {
       const targetRect = target.getBoundingClientRect()
       const x = targetRect.left - elRect.left
       const y = targetRect.top - elRect.top
-      console.log(x, y)
-      console.log(el, target)
       return gsap.to(el, {
         x,
         y,
@@ -122,22 +106,24 @@ export default {
 
 <template>
   <div>
-    <div class="search-box flex h-[40px] items-center bg-gray-300">搜索</div>
+    <SearchArea />
     <div class="relative">
-      <TabMore :tabs />
+      <TabMore :tabs @change="handleTabChange" />
+      <!-- 编辑板块 -->
       <div
-        @click="handleClick"
-        class="absolute top-0 right-0 flex h-full w-[60px] items-center justify-end bg-linear-to-r from-[#fff0] to-[#fff] to-70%">
-        <div :style="menuStyle" class="mb-0.5 h-[15px] w-[15px] bg-contain"></div>
+        @click="showTabArea = !showTabArea"
+        class="textwh bg-linear-to-r absolute right-0 top-1/2 flex h-[40px] w-[40px] -translate-y-1/2 items-center justify-end from-[#d2faf233] to-[#b9f5fd]">
+        <Icon class="mb-0.5" name="menu" size="18" />
       </div>
     </div>
-    <DialogCard @open="handleOpen" title="编辑板块" :show="show" @closePage="handleClick">
+    <RouterView></RouterView>
+    <DialogCard @open="handleOpen" title="编辑板块" :show="showTabArea" @closePage="handleEditedTab">
       <TabArea
         v-if="tabAreaData.length"
         :extraRef="tabAreaData[0].value"
         :key="tabAreaData[0].value"
         v-bind="tabAreaData[0]"
-        dashed
+        :dashed="false"
         deleteable
         @delete="handleDelete"
         @init="handleInit"></TabArea>

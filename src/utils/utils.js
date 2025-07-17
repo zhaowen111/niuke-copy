@@ -1,7 +1,9 @@
-export function getIconStyle(url, size = 20) {
-  return {
-    background: `center/contain no-repeat url('${url}')`,
-    width: size + 'px',
-    height: size + 'px',
+export function getNumberText(num) {
+  if (num > 10000) {
+    const integer = Math.floor(num / 1000);
+    const temp = Math.round((num % 1000) / 100);
+    return '' + integer + '.' + temp + 'k'
+  } else {
+    return num
   }
 }
