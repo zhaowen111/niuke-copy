@@ -26,11 +26,11 @@ function handleTabChange(tab) {
     <!-- <img class="fixed top-0 left-0 opacity-40"  src="/test.jpg"></img> -->
     <div class="overflow-hidden" :style="{ height: 'calc(100% - 3.75rem)' }">
       <RouterView v-slot="{ Component }">
-        <FadeTransition>
-          <KeepAlive>
-            <component :is="Component" />
-          </KeepAlive>
-        </FadeTransition>
+        <!-- <FadeTransition> -->
+        <KeepAlive>
+          <component :is="Component" />
+        </KeepAlive>
+        <!-- </FadeTransition> -->
       </RouterView>
     </div>
 
