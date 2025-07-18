@@ -1,3 +1,4 @@
+const baseUrl = import.meta.env.BASE_URL;
 export const posts = [
   {
     "id": "post_123456",
@@ -12,7 +13,7 @@ export const posts = [
     },
     "title": "找不到实习",
     "content": "大佬们我这简历该咋改啊，投出去没几个发面试的[牛泪]",
-    "img": "/img/image_1.webp",
+    "img": baseUrl + "img/image_1.webp",
     "stats": {
       "view": 26735,
       "comments": 66,
@@ -68,7 +69,7 @@ export const posts = [
     },
     "title": "秋招0 offer怎么办",
     "content": "已经面试了20多家公司，全部挂在一面[牛泪]",
-    "img": "/img/image_3.webp",
+    "img": baseUrl + "img/image_3.webp",
     "stats": {
       "view": 18942,
       "comments": 54,
@@ -124,7 +125,7 @@ export const posts = [
     },
     "title": "大厂实习转正失败",
     "content": "实习三个月没拿到return offer，心态崩了[牛泪]",
-    "img": "/img/image_5.webp",
+    "img": baseUrl + "img/image_5.webp",
     "stats": {
       "view": 32456,
       "comments": 78,
@@ -180,7 +181,7 @@ export const posts = [
     },
     "title": "算法岗竞争太激烈了",
     "content": "985本硕+顶会论文，简历还是被刷[牛泪]",
-    "img": "/img/image_7.webp",
+    "img": baseUrl + "img/image_7.webp",
     "stats": {
       "view": 43210,
       "comments": 92,
@@ -236,7 +237,7 @@ export const posts = [
     },
     "title": "offer比较：腾讯vs阿里",
     "content": "腾讯teg vs 阿里云，都是后端开发，求建议[牛客]",
-    "img": "/img/image_9.webp",
+    "img": baseUrl + "img/image_9.webp",
     "stats": {
       "view": 37890,
       "comments": 64,
@@ -292,7 +293,7 @@ export const posts = [
     },
     "title": "数据岗需要掌握哪些技能？",
     "content": "想转行数据科学，应该学习哪些工具和知识？[求教]",
-    "img": "/img/image_6.webp",
+    "img": baseUrl + "img/image_6.webp",
     "stats": {
       "view": 28765,
       "comments": 47,
@@ -348,7 +349,7 @@ export const posts = [
     },
     "title": "产品经理需要会写代码吗？",
     "content": "技术背景弱，做产品经理有发展吗？[疑问]",
-    "img": "/img/image_12.webp",
+    "img": baseUrl + "img/image_2.webp",
     "stats": {
       "view": 19876,
       "comments": 36,
@@ -404,7 +405,7 @@ export const posts = [
     },
     "title": "嵌入式开发前景如何？",
     "content": "拿到几个嵌入式offer，但担心未来发展受限[思考]",
-    "img": "/img/image_8.webp",
+    "img": baseUrl + "img/image_8.webp",
     "stats": {
       "view": 15678,
       "comments": 29,
@@ -460,7 +461,7 @@ export const posts = [
     },
     "title": "前端框架怎么选？",
     "content": "Vue、React、Angular，哪个更适合新手学习？[求助]",
-    "img": "/img/image_15.webp",
+    "img": baseUrl + "img/image_5.webp",
     "stats": {
       "view": 24567,
       "comments": 41,
@@ -516,7 +517,7 @@ export const posts = [
     },
     "title": "Java还是Go？",
     "content": "现在转Go还来得及吗？Java太卷了[纠结]",
-    "img": "/img/image_17.webp",
+    "img": baseUrl + "img/image_7.webp",
     "stats": {
       "view": 29876,
       "comments": 53,
@@ -572,7 +573,7 @@ export const posts = [
     },
     "title": "设计作品集求指导",
     "content": "投了50家公司没回应，是不是作品集有问题？[牛泪]",
-    "img": "/img/image_11.webp",
+    "img": baseUrl + "img/image_1.webp",
     "stats": {
       "view": 17654,
       "comments": 33,
@@ -628,7 +629,7 @@ export const posts = [
     },
     "title": "测试开发需要写代码吗？",
     "content": "自动化测试需要什么编程水平？[求教]",
-    "img": "/img/image_10.webp",
+    "img": baseUrl + "img/image_0.webp",
     "stats": {
       "view": 13245,
       "comments": 27,
@@ -684,7 +685,7 @@ export const posts = [
     },
     "title": "安全岗面试都问什么？",
     "content": "准备面试安全工程师，求面经分享[抱拳]",
-    "img": "/img/image_22.webp",
+    "img": baseUrl + "img/image_2.webp",
     "stats": {
       "view": 18765,
       "comments": 39,
@@ -740,7 +741,7 @@ export const posts = [
     },
     "title": "DevOps工程师发展前景",
     "content": "运维转DevOps值不值得？薪资能涨多少？[疑问]",
-    "img": "/img/image_13.webp",
+    "img": baseUrl + "img/image_3.webp",
     "stats": {
       "view": 15432,
       "comments": 31,
@@ -796,7 +797,7 @@ export const posts = [
     },
     "title": "运营岗简历怎么写？",
     "content": "零实习经验，如何写运营岗简历？[求助]",
-    "img": "/img/image_14.webp",
+    "img": baseUrl + "img/image_4.webp",
     "stats": {
       "view": 16789,
       "comments": 35,
@@ -852,7 +853,7 @@ export const posts = [
     },
     "title": "大数据学习路线",
     "content": "想转行大数据，应该学习哪些技术栈？[求教]",
-    "img": "/img/image_20.webp",
+    "img": baseUrl + "img/image_0.webp",
     "stats": {
       "view": 21345,
       "comments": 48,
@@ -908,7 +909,7 @@ export const posts = [
     },
     "title": "Unity还是Unreal？",
     "content": "游戏开发入门应该学哪个引擎？[选择困难]",
-    "img": "/img/image_19.webp",
+    "img": baseUrl + "img/image_9.webp",
     "stats": {
       "view": 17654,
       "comments": 36,
@@ -964,7 +965,7 @@ export const posts = [
     },
     "title": "AI岗位需要什么背景？",
     "content": "非科班想转AI，需要补充哪些知识？[求教]",
-    "img": "/img/image_18.webp",
+    "img": baseUrl + "img/image_8.webp",
     "stats": {
       "view": 19876,
       "comments": 42,
@@ -1020,7 +1021,7 @@ export const posts = [
     },
     "title": "金融科技岗位前景",
     "content": "计算机背景转量化金融有优势吗？[思考]",
-    "img": "/img/image_2.webp",
+    "img": baseUrl + "img/image_2.webp",
     "stats": {
       "view": 16789,
       "comments": 37,
@@ -1076,7 +1077,7 @@ export const posts = [
     },
     "title": "Web3开发值得入吗？",
     "content": "区块链开发岗位前景如何？会不会是泡沫？[疑问]",
-    "img": "/img/image_16.webp",
+    "img": baseUrl + "img/image_6.webp",
     "stats": {
       "view": 18765,
       "comments": 44,
