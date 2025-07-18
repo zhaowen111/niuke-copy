@@ -629,7 +629,7 @@ export const posts = [
     },
     "title": "测试开发需要写代码吗？",
     "content": "自动化测试需要什么编程水平？[求教]",
-    "img": baseUrl + "img/image_0.webp",
+    "img": baseUrl + "img/image_21.webp",
     "stats": {
       "view": 13245,
       "comments": 27,

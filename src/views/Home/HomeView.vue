@@ -19,6 +19,7 @@ export default {
       duration: 0.3,
       targets: {},
       childPath: '',
+      tabChangeDirection: 'right',
       max: 8, //额外tab栏上限
     }
   },
@@ -54,7 +55,8 @@ export default {
   },
   methods: {
     // 处理二级路由跳转
-    handleTabChange(tab) {
+    handleTabChange(tab, direction) {
+      this.tabChangeDirection = direction
       const parentPath = this.$route.fullPath.split('/')[1]
       const routepath = `/${parentPath}${tab.value}`
       this.childPath = tab
@@ -148,11 +150,13 @@ export default {
     </div>
 
     <!-- 页面内容 -->
-    <div class="box-border overflow-hidden pb-2" :style="{ height: 'calc(100% - 5.5rem)' }">
+    <div class="relative box-border overflow-hidden pb-2" :style="{ height: 'calc(100% - 5.5rem)' }">
       <RouterView v-slot="{ Component }">
-        <KeepAlive>
-          <component :is="Component" />
-        </KeepAlive>
+        <transition :name="tabChangeDirection">
+          <KeepAlive>
+            <component :is="Component" class="absolute" />
+          </KeepAlive>
+        </transition>
       </RouterView>
     </div>
 
@@ -186,3 +190,27 @@ export default {
     </DialogCard>
   </div>
 </template>
+<style scoped>
+.right-leave-active,
+.right-enter-active,
+.left-leave-active,
+.left-enter-active {
+  transition: transform 0.3s;
+}
+
+.left-enter-from {
+  transform: translateX(-100%);
+}
+
+.left-leave-to {
+  transform: translateX(100%);
+}
+
+.right-enter-from {
+  transform: translateX(100%);
+}
+
+.right-leave-to {
+  transform: translateX(-100%);
+}
+</style>

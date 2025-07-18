@@ -13,6 +13,7 @@ export default {
       activeIndex: -1,
       underlineWidth: 0,
       underlineLeft: 0,
+      direction: '',
     }
   },
   computed: {
@@ -66,12 +67,12 @@ export default {
 
       this.activeTabValue = tab.value //切换激活元素
       this.activeIndex = index
-      this.$emit('change', tab)
+      this.$emit('change', tab, this.direction)
     },
     updateUnderline(index, target) {
       //设置下划线动画
-      const direction = index > this.activeIndex ? 'right' : 'left'
-      if (direction === 'right') {
+      this.direction = index > this.activeIndex ? 'right' : 'left'
+      if (this.direction === 'right') {
         this.underlineWidth = target.offsetWidth
         setTimeout(() => {
           this.underlineLeft = target.offsetLeft
