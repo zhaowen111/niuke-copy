@@ -1,8 +1,11 @@
 <script>
 import { topics } from '@/assets/mock/posts'
+import DialogCard from '@/packages/Dialog/DialogCard.vue'
+import TouPiao from './TouPiao.vue'
 
 export default {
   props: {},
+  components: { DialogCard, TouPiao },
   data() {
     return {
       title: '',
@@ -10,33 +13,49 @@ export default {
       postContent: '',
       images: {},
       topics,
-      featuresA: [
-        {
-          iconName: 'AI_1',
-          text: 'AI配图',
-          id: 1,
-          open: false,
-        },
-        {
-          iconName: 'toupiao',
-          text: '投票',
-          id: 2,
-          open: false,
-        },
-        {
-          iconName: 'xinzi_1',
-          text: '爆薪资',
-          id: 3,
-          open: false,
-        },
-        {
-          iconName: 'neitui',
-          text: '发内推',
-          id: 4,
-          open: false,
-        },
-      ],
+      aiImageMinText: 50,
+      featuresA: {
+        1: { iconName: 'AI_1', text: 'AI配图', id: 1, open: false },
+        2: { iconName: 'toupiao', text: '投票', id: 2, open: false },
+        3: { iconName: 'xinzi_1', text: '爆薪资', id: 3, open: false },
+        4: { iconName: 'neitui', text: '发内推', id: 4, open: false },
+      },
     }
+  },
+  computed: {
+    showAIImage: {
+      get() {
+        return this.featuresA[1].open
+      },
+      set(val) {
+        this.featuresA[1].open = val
+      },
+    },
+    showToupiao: {
+      get() {
+        return this.featuresA[2].open
+      },
+      set(val) {
+        this.featuresA[2].open = val
+      },
+    },
+
+    showBaoxinzi: {
+      get() {
+        return this.featuresA[3].open
+      },
+      set(val) {
+        this.featuresA[3].open = val
+      },
+    },
+    showNeitui: {
+      get() {
+        return this.featuresA[4].open
+      },
+      set(val) {
+        this.featuresA[4].open = val
+      },
+    },
   },
   methods: {
     handleAddImage() {
@@ -67,7 +86,14 @@ export default {
       this.images = images
     },
     openFeatureA(feature) {
-      feature.open = true
+      //AI配图需要先判断内容文字大于三十
+      if (feature.id === 1) {
+        if (this.postContent.length < this.aiImageMinText) {
+          return this.$message(`至少${this.aiImageMinText}字，才可使用AI配图，继续完善内容吧`)
+        }
+      }
+
+      this.featuresA[feature.id].open = true
     },
     handleAddTopic(topic) {
       this.postContent += `#${topic}#`
@@ -165,11 +191,21 @@ export default {
         </div>
       </div>
       <!--  发布按钮-->
-      <button
-        class="bg-linear-to-r h-10 w-full rounded-full bg-[#06f4ba] from-[#00dcc0] to-[#00dc96] font-semibold text-white">
-        发布
-      </button>
+      <button class="linear-bg h-10 w-full rounded-full font-semibold text-white">发布</button>
     </footer>
+
+    <DialogCard title="AI配图" :show="showAIImage" @close="showAIImage = false">
+      <TouPiao></TouPiao>
+    </DialogCard>
+    <DialogCard title="发布投票" :show="showToupiao" @close="showToupiao = false">
+      <TouPiao></TouPiao>
+    </DialogCard>
+    <DialogCard title="爆薪资" :show="showBaoxinzi" @close="showBaoxinzi = false">
+      <TouPiao></TouPiao>
+    </DialogCard>
+    <DialogCard title="发内推" :show="showNeitui" @close="showNeitui = false">
+      <TouPiao></TouPiao>
+    </DialogCard>
   </div>
 </template>
 <style scoped>

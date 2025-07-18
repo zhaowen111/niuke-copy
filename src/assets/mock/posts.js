@@ -292,7 +292,7 @@ export const posts = [
     },
     "title": "数据岗需要掌握哪些技能？",
     "content": "想转行数据科学，应该学习哪些工具和知识？[求教]",
-    "img": "",
+    "img": "https://picsum.photos/600/400?random=55",
     "stats": {
       "view": 28765,
       "comments": 47,
@@ -404,7 +404,7 @@ export const posts = [
     },
     "title": "嵌入式开发前景如何？",
     "content": "拿到几个嵌入式offer，但担心未来发展受限[思考]",
-    "img": "",
+    "img": "https://picsum.photos/600/400?random=56",
     "stats": {
       "view": 15678,
       "comments": 29,
@@ -628,7 +628,7 @@ export const posts = [
     },
     "title": "测试开发需要写代码吗？",
     "content": "自动化测试需要什么编程水平？[求教]",
-    "img": "",
+    "img": "https://picsum.photos/600/400?random=57",
     "stats": {
       "view": 13245,
       "comments": 27,
@@ -740,7 +740,7 @@ export const posts = [
     },
     "title": "DevOps工程师发展前景",
     "content": "运维转DevOps值不值得？薪资能涨多少？[疑问]",
-    "img": "",
+    "img": "https://picsum.photos/600/400?random=58",
     "stats": {
       "view": 15432,
       "comments": 31,
@@ -964,7 +964,7 @@ export const posts = [
     },
     "title": "AI岗位需要什么背景？",
     "content": "非科班想转AI，需要补充哪些知识？[求教]",
-    "img": "",
+    "img": "https://picsum.photos/600/400?random=59",
     "stats": {
       "view": 19876,
       "comments": 42,

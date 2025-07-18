@@ -60,7 +60,7 @@ export default {
     <main class="text-sm">
       <header class="my-1 font-semibold">{{ post.title }}</header>
       <div>{{ post.content }}</div>
-      <img class="h-50 my-2" :src="post.img" />
+      <img class="h-50 skeleton-item my-2" :src="post.img" loading="lazy" />
     </main>
     <!-- 热评第一条 -->
     <div class="border-l-3 my-2 h-4 border-[#d4d8df99] pl-1 text-xs text-[#a7a8aa]">
@@ -91,5 +91,18 @@ export default {
 <style scoped>
 .zan {
   color: #06f4ba;
+}
+.skeleton-item {
+  background: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
+  background-size: 400% 100%;
+  animation: loading 1.4s ease infinite;
+}
+@keyframes loading {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
 }
 </style>

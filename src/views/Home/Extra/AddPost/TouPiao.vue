@@ -1,12 +1,90 @@
 <script>
+import Selector from './Components/Selector.vue'
+
 export default {
   props: {},
+  components: { Selector },
   data() {
-    return {}
+    return {
+      title: { value: '', maxlength: 30 },
+      options: [{ value: '' }, { value: '' }],
+      selectVoteType: 1,
+      selectVoteTime: 7,
+      optionMaxlength: 25,
+      voteTypes: { 1: { text: '单选', value: 1 }, 2: { text: '多选', value: 2 } },
+
+      voteTimes: {
+        1: { value: 7, id: 1, text: '一周' },
+        2: { value: 30, id: 2, text: '一个月' },
+        3: { value: 90, id: 3, text: '三个月' },
+        4: { value: 180, id: 4, text: '半年' },
+      },
+    }
+  },
+  methods: {
+    handleAddOption() {
+      this.options.push({ value: '' })
+    },
+    handleDeleteOption(index) {
+      this.options.splice(index, 1)
+    },
+    resetVote() {
+      this.title.value = ''
+      this.options = [{ value: '' }, { value: '' }]
+      this.selectVoteType = 1
+      this.selectVoteTime = 7
+    },
+    createVote() {},
   },
 }
 </script>
 <template>
-  <div></div>
+  <div class="box-border w-full p-2" style="clip-path: inset(0 0 -4.5rem 0)">
+    <!-- 标题 -->
+    <div class="border-b-1 relative flex h-10 items-center border-[#ddd]">
+      <input class="w-full" v-model="title.value" type="text" placeholder="投票标题" :maxlength="title.maxlength" />
+      <span class="absolute right-0 text-xs text-[#aaa]">{{ title.value.length + '/' + title.maxlength }}</span>
+    </div>
+
+    <main class="pb-15">
+      <div class="options">
+        <div
+          class="relative mt-4 box-border flex h-12 items-center rounded-[8px] bg-[#eeec] px-4 py-2"
+          v-for="(option, index) in options"
+          :key="index">
+          <input
+            class="w-full"
+            v-model="option.value"
+            type="text"
+            :placeholder="'选项 ' + (index + 1)"
+            :maxlength="title.maxlength" />
+          <span class="absolute right-2 text-xs text-[#aaa]">{{ option.value.length + '/' + optionMaxlength }}</span>
+          <span
+            @click="handleDeleteOption(index)"
+            class="absolute -right-1 -top-1 size-5 rotate-45 rounded-full bg-[#ccc] text-center leading-5 text-white">
+            +
+          </span>
+        </div>
+        <div @click="handleAddOption" class="center my-4 box-border h-10 rounded-[8px] bg-[#eee9] text-[#0fb48b]">
+          <span class="mb-0.5 pr-1 text-[24px]">+</span>
+          添加选项
+        </div>
+      </div>
+      <!-- 投票设置 -->
+      <div>
+        <aside class="font-semibold">投票类型</aside>
+        <Selector :options="voteTypes" :value="selectVoteType" @select="val => (selectVoteType = val)" />
+      </div>
+      <div>
+        <aside class="font-semibold">结束时间</aside>
+        <Selector :options="voteTimes" :value="selectVoteTime" @select="val => (selectVoteTime = val)" />
+      </div>
+    </main>
+
+    <footer class="h-15 fixed bottom-0 left-0 box-border flex w-full items-center bg-white px-4">
+      <button @click="resetVote" class="center flex-3 h-10 rounded-full bg-[#eee] text-[#0fb48b]">重置</button>
+      <button @click="createVote" class="linear-bg center flex-4 ml-2 h-10 rounded-full text-white">创建投票</button>
+    </footer>
+  </div>
 </template>
 <style></style>

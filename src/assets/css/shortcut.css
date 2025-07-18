@@ -30,3 +30,7 @@ input:focus {
 .center {
   @apply flex items-center justify-center;
 }
+
+.linear-bg {
+  @apply bg-linear-to-r from-[#00dcc0] to-[#00dc96]
+}

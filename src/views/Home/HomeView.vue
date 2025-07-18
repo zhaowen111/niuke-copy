@@ -1,6 +1,6 @@
 <script>
 import TabMore from '@/components/Home/TabMore.vue'
-import DialogCard from '../../components/Home/DialogCard.vue'
+import DialogCard from '../../packages/Dialog/DialogCard.vue'
 import TabArea from '../../components/Home/TabArea.vue'
 import gsap from 'gsap'
 import SearchArea from '../../components/Home/SearchArea.vue'
@@ -164,7 +164,7 @@ export default {
     </div>
 
     <!-- 弹窗-编辑tab内容 -->
-    <DialogCard @open="handleOpen" title="编辑板块" :show="showTabArea" @closePage="handleEditedTab">
+    <DialogCard @open="handleOpen" title="编辑板块" :show="showTabArea" @close="handleEditedTab">
       <TabArea
         v-if="tabAreaData.length"
         :extraRef="tabAreaData[0].value"
