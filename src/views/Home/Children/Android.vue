@@ -8,7 +8,7 @@ export default {
 </script>
 
 <template>
-  <div>Android</div>
+  <div class="flex h-full w-full items-center justify-center bg-white">Android</div>
 </template>
 
 <style scoped></style>

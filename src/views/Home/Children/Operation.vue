@@ -8,7 +8,7 @@ export default {
 </script>
 
 <template>
-  <div>Operation</div>
+  <div class="flex h-full w-full items-center justify-center bg-white">Operation</div>
 </template>
 
 <style scoped></style>

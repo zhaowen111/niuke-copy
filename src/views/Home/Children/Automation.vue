@@ -8,7 +8,7 @@ export default {
 </script>
 
 <template>
-  <div>Automation</div>
+  <div class="flex h-full w-full items-center justify-center bg-white">Automation</div>
 </template>
 
 <style scoped></style>

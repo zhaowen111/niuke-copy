@@ -8,7 +8,7 @@ export default {
 </script>
 
 <template>
-  <div>BigDataDev</div>
+  <div class="flex h-full w-full items-center justify-center bg-white">BigDataDev</div>
 </template>
 
 <style scoped></style>

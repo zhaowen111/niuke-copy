@@ -2,9 +2,8 @@
 import { posts } from '@/assets/mock/posts'
 import ReduceRecommend from '@/components/Common/ReduceRecommend.vue'
 import Posts from '@/components/Home/Recommend/Posts.vue'
-import LifeCycleMixin from '@/components/Common/LifeCycleMixin.vue'
 import { findItem, throttle } from '@/utils/utils'
-import { useHomeStore } from '@/stores/counter'
+import { keys, useHomeStore } from '@/stores/store'
 import { mapState, mapWritableState } from 'pinia'
 
 export default {
@@ -14,7 +13,9 @@ export default {
     Posts,
   },
   computed: {
-    ...mapWritableState(useHomeStore, 'scrollTop'),
+    ...mapWritableState(useHomeStore, {
+      scrollTop: keys.recommendScroll,
+    }),
   },
   data() {
     return {

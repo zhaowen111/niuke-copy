@@ -8,7 +8,7 @@ export default {
 </script>
 
 <template>
-  <div>DataAnalyst</div>
+  <div class="flex h-full w-full items-center justify-center bg-white">DataAnalyst</div>
 </template>
 
 <style scoped></style>

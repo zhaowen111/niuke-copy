@@ -8,7 +8,7 @@ mkdir -p "$TARGET_DIR"
 
 # 要创建的文件列表（基于你的路由数据）
 FILES=(
-  "Attention.vue" "Recommend.vue" "AutumnRecruitment.vue" "HotList.vue"
+  "Attention.vue" "AutumnRecruitment.vue" "HotList.vue"
   "InternalReferral.vue" "Workplace.vue" "JobHunting.vue" "KnowledgeSharing.vue"
   "Salary.vue" "Interview.vue" "FrontEnd.vue" "Java.vue" "Cpp.vue"
   "ProductManager.vue" "Algorithm.vue" "Operation.vue" "Testing.vue"
@@ -33,7 +33,7 @@ export default {
 </script>
 
 <template>
-  <div>$route_name</div>
+  <div class="flex h-full w-full items-center justify-center bg-white">$route_name</div>
 </template>
 
 <style scoped></style>

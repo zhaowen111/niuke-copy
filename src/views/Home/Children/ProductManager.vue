@@ -8,7 +8,7 @@ export default {
 </script>
 
 <template>
-  <div>ProductManager</div>
+  <div class="flex h-full w-full items-center justify-center bg-white">ProductManager</div>
 </template>
 
 <style scoped></style>

@@ -6,7 +6,7 @@ import gsap from 'gsap'
 import SearchArea from '../../components/Home/SearchArea.vue'
 import { RouterView } from 'vue-router'
 import { tabType, defaultTabs, allTabItems, MyTabId } from '@/assets/mock/tabData'
-import { defaultHomeChildPath } from '@/router'
+import { defaultHomeChildPath, defaultHomePath } from '@/router'
 
 export default {
   components: { TabMore, DialogCard, TabArea, SearchArea, RouterView },
@@ -18,21 +18,34 @@ export default {
       showTabArea: false,
       duration: 0.3,
       targets: {},
-      parentPath: '',
       childPath: '',
       max: 8, //额外tab栏上限
     }
   },
   beforeRouteEnter(to, from, next) {
-    const parentPath = to.fullPath.split('/')[1]
     next(vm => {
-      vm.parentPath = parentPath
       if (vm.childPath) {
-        vm.handleTabChange(vm.childPath)
+        vm.handleTabChange(this.childPath)
       } else {
-        vm.handleTabChange({ value: defaultHomeChildPath })
+        vm.handleTabChange({ value: '/' + defaultHomeChildPath })
       }
     })
+  },
+  beforeRouteUpdate(to, from) {
+    //处理从其他页面路由到home,有缓存的二级路由则跳转，否则跳转默认的
+    if (!from.fullPath.startsWith(defaultHomePath)) {
+      if (this.childPath) {
+        this.handleTabChange(this.childPath)
+      } else {
+        this.handleTabChange({ value: '/' + defaultHomeChildPath })
+      }
+    }
+  },
+  watch: {
+    // $route(to, from) {
+    //   if (!to) return
+    //   console.log(to.fullPath)
+    // },
   },
   computed: {
     tabs() {
@@ -40,6 +53,13 @@ export default {
     },
   },
   methods: {
+    // 处理二级路由跳转
+    handleTabChange(tab) {
+      const parentPath = this.$route.fullPath.split('/')[1]
+      const routepath = `/${parentPath}${tab.value}`
+      this.childPath = tab
+      this.$router.push(routepath)
+    },
     handleOpen() {
       const result = JSON.parse(JSON.stringify(tabType))
       this.allTabItems.forEach(item => {
@@ -49,18 +69,11 @@ export default {
           result[item.type].tabs.push({ ...item })
         }
       })
-
       const my = result[MyTabId]
       delete result[MyTabId]
       this.tabAreaData = [my, result]
     },
-    // tab变化触发路由
-    handleTabChange(tab) {
-      if (!this.parentPath) return
-      const routepath = `/${this.parentPath}${tab.value}`
-      this.childPath = tab
-      this.$router.push(routepath)
-    },
+
     async handleClickItem(tab, index, cur, target) {
       if (this.tabAreaData[0].tabs.length >= this.max) {
         this.$message(`最多选择${this.max}个标签哦~`, 1500)
@@ -112,6 +125,9 @@ export default {
         duration,
       })
     },
+    handleOpen() {
+      this.handleTabChange({ value: '/AddPost' })
+    },
   },
 }
 </script>
@@ -138,6 +154,13 @@ export default {
           <component :is="Component" />
         </KeepAlive>
       </RouterView>
+    </div>
+
+    <!-- 发帖按钮 -->
+    <div
+      @click="handleOpen"
+      class="bottom-18 fixed right-2 flex size-12 items-center justify-center rounded-full bg-[#06f4ba] pb-1 text-[40px] text-white">
+      +
     </div>
 
     <!-- 弹窗-编辑tab内容 -->

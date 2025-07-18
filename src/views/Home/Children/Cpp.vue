@@ -8,7 +8,7 @@ export default {
 </script>
 
 <template>
-  <div>Cpp</div>
+  <div class="flex h-full w-full items-center justify-center bg-white">Cpp</div>
 </template>
 
 <style scoped></style>

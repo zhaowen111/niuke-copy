@@ -8,7 +8,7 @@ export default {
 </script>
 
 <template>
-  <div>HotList</div>
+  <div class="flex h-full w-full items-center justify-center bg-white">HotList</div>
 </template>
 
 <style scoped></style>

@@ -8,7 +8,7 @@ export default {
 </script>
 
 <template>
-  <div>InternalReferral</div>
+  <div class="flex h-full w-full items-center justify-center bg-white">InternalReferral</div>
 </template>
 
 <style scoped></style>

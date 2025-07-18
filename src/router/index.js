@@ -4,20 +4,23 @@ import AnimationExp from '@/components/transition-example/AnimationExp.vue'
 import Test from '@/views/QuestionBank/Test.vue'
 import { defaultTabs, allTabItems } from '@/assets/mock/tabData'
 import NotFound from '@/views/NotFound.vue'
-
 export const defaultHomeChildPath = 'Recommend'
-
+export const defaultHomePath = '/home'
 const routes = [
   {
     path: '/',
-    redirect: '/home'
+    redirect: defaultHomePath
   },
   {
-    path: '/home',
+    path: defaultHomePath,
     component: HomeView,
     children: [
       {
-        path: 'Attention', // 去掉了开头的斜杠
+        path: 'AddPost',
+        component: () => import('@/views/Home/Extra/AddPost.vue')
+      },
+      {
+        path: 'Attention',
         component: () => import('@/views/Home/Children/Attention.vue')
       },
       {
