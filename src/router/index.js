@@ -2,7 +2,6 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/Home/HomeView.vue'
 import AnimationExp from '@/components/transition-example/AnimationExp.vue'
 import Test from '@/views/QuestionBank/Test.vue'
-import { defaultTabs, allTabItems } from '@/assets/mock/tabData'
 import NotFound from '@/views/NotFound.vue'
 export const defaultHomeChildPath = 'Recommend'
 export const defaultHomePath = '/home'
@@ -15,10 +14,6 @@ const routes = [
     path: defaultHomePath,
     component: HomeView,
     children: [
-      {
-        path: 'AddPost',
-        component: () => import('@/views/Home/Extra/AddPost.vue')
-      },
       {
         path: 'Attention',
         component: () => import('@/views/Home/Children/Attention.vue')
@@ -131,6 +126,12 @@ const routes = [
     ]
   },
   {
+    path: '/AddPost',
+    name: "AddPost",
+    component: () => import('@/views/Home/Extra/AddPost.vue'),
+    meta: { fullscreen: true }
+  },
+  {
     path: '/about',
     component: () => import('../views/Business/AboutView.vue'),
   },
@@ -151,7 +152,6 @@ const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes
 })
-
 
 router.beforeEach((to, from) => {
   return to.fullPath !== from.fullPath //名字相同则不重复导航

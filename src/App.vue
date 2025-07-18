@@ -1,9 +1,8 @@
 <script setup>
-import { RouterLink, RouterView, useRouter, useRoute } from 'vue-router'
+import { RouterView, useRouter, useRoute } from 'vue-router'
 import Tabs from '@/packages/Tabs/Tabs.vue'
 import LoadingPage from '@/packages/LoadingPage/LoadingPage.vue'
 import img from '@/assets/icon/loading.jpg'
-import FadeTransition from './components/transition-example/FadeTransition.vue'
 import { bottomTabs as tabs } from '@/assets/mock/tabData'
 import { computed, onMounted, ref, watch } from 'vue'
 import { keys, useHomeStore } from './stores/store'
@@ -26,8 +25,13 @@ function handleTabChange(tab) {
 }
 
 //管理底部tab的显示和隐藏
-const store = useHomeStore()
-const hiddenBottomTab = computed(() => store[keys.HiddenBottomTabBar])
+const hiddenBottomTab = ref(false)
+watch(
+  () => route.meta,
+  val => {
+    hiddenBottomTab.value = val && val.fullscreen
+  },
+)
 </script>
 
 <template>

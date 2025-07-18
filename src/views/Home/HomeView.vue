@@ -125,8 +125,8 @@ export default {
         duration,
       })
     },
-    handleOpen() {
-      this.handleTabChange({ value: '/AddPost' })
+    handleOpenAddPost() {
+      this.$router.push({ name: 'AddPost' })
     },
   },
 }
@@ -158,7 +158,7 @@ export default {
 
     <!-- 发帖按钮 -->
     <div
-      @click="handleOpen"
+      @click="handleOpenAddPost"
       class="bottom-18 fixed right-2 flex size-12 items-center justify-center rounded-full bg-[#06f4ba] pb-1 text-[40px] text-white">
       +
     </div>

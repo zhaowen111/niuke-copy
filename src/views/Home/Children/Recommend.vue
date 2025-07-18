@@ -39,7 +39,6 @@ export default {
     handleReduce(val) {
       this.showReduceRecommend = false
       if (val) {
-        console.log(val)
         const postKey = findItem(this.reduceId, 'id', posts)
         if (postKey) {
           this.posts.splice(postKey, 1)
@@ -50,7 +49,6 @@ export default {
     handleScroll: throttle(function (event) {
       if (!event.target) return
       this.scrollTop = event.target.scrollTop
-      console.log(this.scrollTop)
     }, 200),
     handleZan(val, item) {
       item.stats.likes = val
@@ -63,6 +61,7 @@ export default {
   <div class="h-full overflow-y-scroll" ref="recommendContainer" @scroll.self="handleScroll">
     <div>
       <Posts
+        :key="item.id"
         :post="item"
         v-for="item in posts"
         @openReduce="handleClickReduce"

@@ -11,3 +11,14 @@
 .scale-leave-active {
   transition: all 0.2s;
 }
+
+button,
+input,
+textarea {
+  outline: none;
+}
+
+button:active,
+input:focus {
+  outline: none;
+}
