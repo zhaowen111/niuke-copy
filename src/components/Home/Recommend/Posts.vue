@@ -56,8 +56,6 @@ export default {
   },
   methods: {
     handleLoad() {
-      console.log(111)
-
       this.loaded = true
     },
     getNumberText,
