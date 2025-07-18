@@ -1,9 +1,10 @@
 <script>
 import Icon from '@/packages/Icon.vue'
 import { getNumberText } from '@/utils/utils'
+import { avataaars } from '@dicebear/collection'
+import { createAvatar } from '@dicebear/core'
 import { gsap } from 'gsap'
 import { nextTick } from 'vue'
-
 export default {
   props: {
     post: Object,
@@ -13,7 +14,40 @@ export default {
   data() {
     return {
       zan: false,
+      loaded: false,
+      avatar: null,
     }
+  },
+  created() {
+    this.avatar = createAvatar(avataaars, {
+      size: 64,
+      seed: Date.now(),
+      backgroundColor: ['b6e3f4', 'c0aede', 'd1d4f9'],
+      backgroundType: ['gradientLinear'],
+      hairColor: [
+        '#4A3120', // 深棕色
+        '#6B4423', // 巧克力棕
+        '#8B4513', // 马鞍棕
+        '#A0522D', // 赭石棕
+        '#D2B48C', // 浅棕金
+        '#F5DEB3', // 小麦金
+        '#E6C229', // 蜂蜜金
+        '#C9A86A', // 沙金色
+        '#B8860B', // 暗金色
+        '#CD853F', // 秘鲁棕（暖棕）
+        '#A52A2A', // 红棕色
+        '#D2691E', // 巧克力红棕
+        '#800000', // 栗红色
+        '#B22222', // 火焰红
+        '#FF4500', // 橙红色
+        '#FF6347', // 番茄红
+        '#9932CC', // 深兰花紫
+        '#8A2BE2', // 蓝紫色
+        '#4169E1', // 皇室蓝（时尚色）
+        '#1E90FF', // 道奇蓝（亮眼色）
+      ],
+      // ... other options
+    }).toDataUri()
   },
   computed: {
     comment() {
@@ -21,6 +55,11 @@ export default {
     },
   },
   methods: {
+    handleLoad() {
+      console.log(111)
+
+      this.loaded = true
+    },
     getNumberText,
     async handleClickZan() {
       const likes = this.zan ? this.post.stats.likes - 1 : this.post.stats.likes + 1
@@ -41,7 +80,7 @@ export default {
     <!-- 标题栏 -->
     <header class="relative flex h-10 items-center">
       <div>
-        <img class="h-8 w-8 rounded-full" :src="post.author.avatar" alt="" />
+        <img class="h-8 w-8 rounded-full" :src="avatar" alt="" />
       </div>
       <div class="ml-2">
         <div class="-mb-1">
@@ -60,7 +99,9 @@ export default {
     <main class="text-sm">
       <header class="my-1 font-semibold">{{ post.title }}</header>
       <div>{{ post.content }}</div>
-      <img class="h-50 skeleton-item my-2" :src="post.img" loading="lazy" />
+      <div class="h-50 skeleton-item my-2">
+        <img class="h-full" :src="post.img" v-show="loaded" @load="handleLoad" />
+      </div>
     </main>
     <!-- 热评第一条 -->
     <div class="border-l-3 my-2 h-4 border-[#d4d8df99] pl-1 text-xs text-[#a7a8aa]">
