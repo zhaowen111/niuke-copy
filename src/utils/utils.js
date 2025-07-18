@@ -8,6 +8,16 @@ export function getNumberText(num) {
   }
 }
 
+export function getNumberTextWan(num) {
+  if (num > 10000) {
+    const integer = Math.floor(num / 10000);
+    const temp = Math.round((num % 10000) / 1000);
+    return '' + integer + '.' + temp + 'w'
+  } else {
+    return num
+  }
+}
+
 //source:[{valueKey:xxx}] 或{aa:{valueKey:xxx}}
 export function findItem(value, valueKey, source) {
   if (Array.isArray(source) && isStrOrNum(value) && isStrOrNum(valueKey)) {

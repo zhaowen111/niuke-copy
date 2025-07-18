@@ -1120,3 +1120,126 @@ export const posts = [
     }
   }
 ]
+
+export const topics = [
+  {
+    "topic_id": 1,
+    "topic_content": "想实习转正，又想准备秋招，我该怎么办",
+    "discussion_count": 9427,
+    "view_count": 1021000
+  },
+  {
+    "topic_id": 2,
+    "topic_content": "如果实习可以转正，你会不会放弃秋招",
+    "discussion_count": 4921,
+    "view_count": 563000
+  },
+  {
+    "topic_id": 3,
+    "topic_content": "牛客创作赏金赛",
+    "discussion_count": 213000,
+    "view_count": 19000000
+  },
+  {
+    "topic_id": 4,
+    "topic_content": "无实习如何秋招上岸",
+    "discussion_count": 16245,
+    "view_count": 1640000
+  },
+  {
+    "topic_id": 5,
+    "topic_content": "实习好累，可以辞职全力准备秋招吗",
+    "discussion_count": 2438,
+    "view_count": 2720000
+  },
+  {
+    "topic_id": 6,
+    "topic_content": "实习想申请秋招offer，能不能argue薪资",
+    "discussion_count": 926,
+    "view_count": 149000
+  },
+  {
+    "topic_id": 7,
+    "topic_content": "实习与准备秋招该如何平衡",
+    "discussion_count": 12356,
+    "view_count": 1195000
+  },
+  {
+    "topic_id": 8,
+    "topic_content": "如何一边实习一边秋招",
+    "discussion_count": 16200,
+    "view_count": 1589000
+  },
+  {
+    "topic_id": 9,
+    "topic_content": "机械人与华为的爱恨情仇",
+    "discussion_count": 954,
+    "view_count": 120000
+  },
+  {
+    "topic_id": 10,
+    "topic_content": "非技术求职现状",
+    "discussion_count": 3142,
+    "view_count": 461000
+  },
+  {
+    "topic_id": 11,
+    "topic_content": "一句话证明你在找工作",
+    "discussion_count": 3628,
+    "view_count": 413000
+  },
+  {
+    "topic_id": 12,
+    "topic_content": "满分简历要如何准备？",
+    "discussion_count": 1623,
+    "view_count": 143000
+  },
+  {
+    "topic_id": 13,
+    "topic_content": "实习期间如何提升留用概率？",
+    "discussion_count": 1321,
+    "view_count": 126000
+  },
+  {
+    "topic_id": 14,
+    "topic_content": "如何提高实习转正率？",
+    "discussion_count": 139,
+    "view_count": 8500
+  },
+  {
+    "topic_id": 15,
+    "topic_content": "找不到实习会影响秋招吗",
+    "discussion_count": 13200,
+    "view_count": 1284000
+  },
+  {
+    "topic_id": 16,
+    "topic_content": "机械人，你的秋招第一份简历被谁挂了",
+    "discussion_count": 2032,
+    "view_count": 144000
+  },
+  {
+    "topic_id": 17,
+    "topic_content": "不给转正的实习，你还去吗",
+    "discussion_count": 22200,
+    "view_count": 2227000
+  },
+  {
+    "topic_id": 18,
+    "topic_content": "机械制造笔面经",
+    "discussion_count": 34200,
+    "view_count": 2654000
+  },
+  {
+    "topic_id": 19,
+    "topic_content": "投格力的你，拿到offer了吗？",
+    "discussion_count": 580,
+    "view_count": 85000
+  },
+  {
+    "topic_id": 20,
+    "topic_content": "机械人，说说你的烦心事",
+    "discussion_count": 840,
+    "view_count": 70000
+  }
+]

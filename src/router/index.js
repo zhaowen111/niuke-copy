@@ -128,7 +128,7 @@ const routes = [
   {
     path: '/AddPost',
     name: "AddPost",
-    component: () => import('@/views/Home/Extra/AddPost.vue'),
+    component: () => import('@/views/Home/Extra/AddPost/AddPost.vue'),
     meta: { fullscreen: true }
   },
   {
