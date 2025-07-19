@@ -13,7 +13,7 @@ const showLoading = ref(true)
 
 onMounted(() => {
   adapt(375, 16)
-  alert(`css width:${window.innerWidth},dpr:${window.devicePixelRatio}`)
+  // alert(`css width:${window.innerWidth},dpr:${window.devicePixelRatio}`)
 })
 onUnmounted(() => {})
 const router = useRouter()
