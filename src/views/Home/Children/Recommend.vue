@@ -58,7 +58,7 @@ export default {
 </script>
 
 <template>
-  <div class="h-full overflow-y-scroll" ref="recommendContainer" @scroll.self="handleScroll">
+  <div class="no-scrollbar h-full w-full overflow-y-scroll" ref="recommendContainer" @scroll.self="handleScroll">
     <div>
       <Posts
         :key="item.id"

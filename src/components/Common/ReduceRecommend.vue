@@ -35,7 +35,7 @@ export default {
     <div
       class="fixed left-1/2 top-full z-20 w-full -translate-x-1/2 transition-[translate]"
       :class="this.show ? '-translate-y-full' : 'translate-y-1/2'">
-      <main class="mx-4 rounded-[8px] bg-white p-2">
+      <main class="mx-4 rounded-[0.5rem] bg-white p-2">
         <div>
           <div
             :key="item.type"
@@ -48,7 +48,7 @@ export default {
       </main>
       <div
         @click.stop="handleClose"
-        class="m-4 mb-8 rounded-[8px] border-b-[0.5px] border-b-[#eee] bg-white p-2 text-center text-sm text-[#aaa] last:border-0">
+        class="m-4 mb-8 rounded-[0.5rem] border-b-[0.5px] border-b-[#eee] bg-white p-2 text-center text-sm text-[#aaa] last:border-0">
         取消
       </div>
       <Background :show="show" @close="handleClose" />

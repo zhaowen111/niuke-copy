@@ -83,7 +83,9 @@ export default {
       <div class="ml-2">
         <div class="-mb-1">
           <span class="text-sm font-semibold">{{ post.author.username }}</span>
-          <span class="ml-1 rounded-[4px] bg-blue-50 p-1 text-xs text-blue-600">{{ 'lv.' + post.author.level }}</span>
+          <span class="ml-1 rounded-[0.25rem] bg-blue-50 p-1 text-xs text-blue-600">
+            {{ 'lv.' + post.author.level }}
+          </span>
         </div>
         <div class="-mt-1">
           <span class="pr-2 text-xs text-[#a7a8aa]">{{ post.author.postTime }}</span>
@@ -95,14 +97,14 @@ export default {
     </header>
     <!-- 帖子简要内容 -->
     <main class="text-sm">
-      <header class="my-1 font-semibold">{{ post.title }}</header>
+      <header class="my-2 font-semibold">{{ post.title }}</header>
       <div>{{ post.content }}</div>
       <div class="h-50 my-2" :class="!loaded && 'skeleton-item'">
-        <img class="h-full" :src="post.img" v-show="loaded" @load="handleLoad" />
+        <img class="h-full rounded-xl" :src="post.img" v-show="loaded" @load="handleLoad" />
       </div>
     </main>
     <!-- 热评第一条 -->
-    <div class="border-l-3 my-2 h-4 border-[#d4d8df99] pl-1 text-xs text-[#a7a8aa]">
+    <div class="border-l-3 my-3 h-4 border-[#d4d8df99] pl-1 text-xs text-[#a7a8aa]">
       {{ comment.author.username + ':' + comment.content }}
     </div>
     <!-- 标签 -->
@@ -112,16 +114,16 @@ export default {
     </aside>
     <!-- 互动数据 -->
     <aside class="mx-2 flex justify-between">
-      <div class="mt-2 flex items-center text-sm text-[#7778aa]">
-        <Icon class="mb-[1px] mr-1" name="seen" size="18" />
+      <div class="mt-2 flex items-center text-[#7778aa]">
+        <Icon class="mb-0.25 mr-1" name="seen" />
         <div>{{ getNumberText(post.stats.view) }}</div>
       </div>
-      <div class="mt-2 flex items-center text-sm text-[#7778aa]">
-        <Icon class="mb-[1px] mr-1" name="comment" size="14" />
+      <div class="mt-2 flex items-center text-[#7778aa]">
+        <Icon class="mb-0.25 mr-1" name="comment" size="16" />
         <div>{{ getNumberText(post.stats.comments) }}</div>
       </div>
-      <div @click.stop="handleClickZan" :class="zan ? 'zan' : ''" class="mt-2 flex items-center text-sm text-[#7778aa]">
-        <Icon class="mb-[1px] mr-1" name="zan" size="15" ref="zanIcon" />
+      <div class="mt-2 flex items-center text-[#7778aa]" @click.stop="handleClickZan" :class="zan ? 'zan' : ''">
+        <Icon class="mb-0.25 mr-1" name="zan" size="17" ref="zanIcon" />
         <div>{{ getNumberText(post.stats.likes) }}</div>
       </div>
     </aside>

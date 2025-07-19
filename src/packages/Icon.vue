@@ -21,10 +21,11 @@ export default {
   },
   computed: {
     iconStyle() {
+      const size = this.size / 16 + 'rem'
       return {
-        width: this.size + 'px',
+        width: size,
+        height: size,
         background: `center/contain no-repeat url("${this.icon}")`,
-        height: this.size + 'px',
       }
     },
   },

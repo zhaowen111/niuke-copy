@@ -143,7 +143,7 @@ export default {
         <!-- 按钮-编辑板块 -->
         <div
           @click="showTabArea = !showTabArea"
-          class="textwh bg-linear-to-r absolute right-0 top-1/2 flex h-[40px] w-[40px] -translate-y-1/2 items-center justify-end from-[#d2faf233] to-[#b9f5fd]">
+          class="textwh bg-linear-to-r absolute right-0 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-end from-[#d2faf233] to-[#b9f5fd]">
           <Icon class="mb-0.5" name="menu" size="18" />
         </div>
       </div>
@@ -163,7 +163,7 @@ export default {
     <!-- 发帖按钮 -->
     <div
       @click="handleOpenAddPost"
-      class="bottom-18 fixed right-2 flex size-12 items-center justify-center rounded-full bg-[#06f4ba] pb-1 text-[40px] text-white">
+      class="bottom-18 fixed right-2 flex size-12 items-center justify-center rounded-full bg-[#06f4ba] pb-1 text-[2.5rem] text-white">
       +
     </div>
 

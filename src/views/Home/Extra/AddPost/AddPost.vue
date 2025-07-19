@@ -123,13 +123,13 @@ export default {
 </script>
 <template>
   <div class="relative box-border h-full w-full bg-white p-2">
-    <header class="fixed left-0 top-0 box-border flex h-12 w-full items-center justify-center px-2">
+    <header class="fixed left-0 top-0 box-border flex h-12 w-full items-center justify-center bg-white px-2">
       <Icon @click="$router.go(-1)" class="absolute left-2" name="return" size="18" />
       <span class="font-semibold">发动态</span>
       <button class="py-1.25 absolute right-2 rounded-full bg-[#06f4ba] px-4 text-sm text-white">发布</button>
     </header>
     <!-- 内容编辑区域 area -->
-    <main class="mt-12 px-2">
+    <main class="no-scrollbar pb-30 box-border h-full overflow-y-scroll px-2 pt-12">
       <!-- 标题 -->
       <div class="title border-b-1 relative h-8 border-[#eee]">
         <input
@@ -156,7 +156,7 @@ export default {
       <div class="grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-5">
         <transition-group name="image">
           <div :key="image.id" v-for="image in images" class="relative aspect-square">
-            <img :src="image.value" :alt="image.name" class="size-full rounded-[8px]" />
+            <img :src="image.value" :alt="image.name" class="size-full rounded-[0.5rem]" />
             <div
               @click.stop="handleDeleteImg(image)"
               class="center absolute right-2 top-2 size-5 rounded-full bg-[#000b]">
@@ -167,7 +167,7 @@ export default {
           <div
             key="addImage"
             @click="triggerFileInput"
-            class="add-image center aspect-square size-full rounded-[8px] bg-[#eee]">
+            class="add-image center aspect-square size-full rounded-[0.5rem] bg-[#eee]">
             <Icon name="add" size="30" />
             <input type="file" accept="image/*" @change="handleFileUpload" style="display: none" ref="fileInput" />
           </div>
@@ -189,16 +189,16 @@ export default {
     </main>
 
     <!-- 页脚工具栏区域 -->
-    <footer class="fixed bottom-0 left-0 box-border w-full p-2">
+    <footer class="fixed bottom-0 left-0 box-border w-full bg-white p-2">
       <!-- 工具栏一 -->
-      <div class="flex items-center">
+      <div class="flex flex-wrap items-center">
         <div
           @click="openFeatureA(feature)"
-          class="first:border-1 group mr-2 flex items-center rounded-full bg-[#eeec] px-2 py-1 text-xs first:scale-95 first:border-blue-300 first:bg-blue-50"
+          class="first:border-1 group mb-2 mr-2 flex items-center rounded-full bg-[#eeec] px-2 py-1 text-xs first:scale-95 first:border-blue-300 first:bg-blue-50"
           v-for="feature in featuresA"
           :key="feature.id">
           <Icon :name="feature.iconName" size="13" class="mr-1 inline-block group-first:mb-[3px]"></Icon>
-          <span>{{ feature.text }}</span>
+          <span class="text-nowrap">{{ feature.text }}</span>
         </div>
       </div>
       <!-- 工具栏二 -->

@@ -89,7 +89,7 @@ export default {
 }
 </script>
 <template>
-  <div class="box-border w-full p-2" style="clip-path: inset(0 0 -13rem 0)">
+  <div class="box-border w-full p-2">
     <!-- 标题 -->
     <div class="border-b-1 relative flex h-10 items-center border-[#ddd]">
       <input class="w-full" v-model="title.value" type="text" placeholder="投票标题" :maxlength="title.maxlength" />
@@ -99,7 +99,7 @@ export default {
     <main class="pb-15">
       <div class="options">
         <div
-          class="relative mt-4 box-border flex h-12 items-center rounded-[8px] bg-[#eeec] px-4 py-2"
+          class="relative mt-4 box-border flex h-12 items-center rounded-[0.5rem] bg-[#eeec] px-4 py-2"
           v-for="(option, index) in options"
           :key="index">
           <input
@@ -111,8 +111,8 @@ export default {
           <span class="absolute right-2 text-xs text-[#aaa]">{{ option.value.length + '/' + optionMaxlength }}</span>
           <DeleteBtn class="-right-1 -top-1" @delete="handleDeleteOption(index)" />
         </div>
-        <div @click="handleAddOption" class="center my-4 box-border h-10 rounded-[8px] bg-[#eee9] text-[#0fb48b]">
-          <span class="mb-0.5 pr-1 text-[24px]">+</span>
+        <div @click="handleAddOption" class="center my-4 box-border h-10 rounded-[0.5rem] bg-[#eee9] text-[#0fb48b]">
+          <span class="mb-0.5 pr-1 text-[1.5rem]">+</span>
           添加选项
         </div>
       </div>

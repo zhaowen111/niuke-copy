@@ -41,7 +41,7 @@ export default {
         <div class="mt-1 scale-75 text-xs text-[#6c7b7e]">更多</div>
       </div>
       <transition name="card">
-        <div v-show="showDialog" class="more-card w-30 absolute right-0 top-full z-20 rounded-xl bg-white p-2">
+        <div v-show="showDialog" class="more-card w-30 absolute right-2 top-[110%] z-20 rounded-xl bg-white p-2">
           <div class="flex items-center border-b border-[#ddd] py-2 text-xs">
             <Icon class="mx-2" name="sao" size="18" />
             <div>扫一扫</div>

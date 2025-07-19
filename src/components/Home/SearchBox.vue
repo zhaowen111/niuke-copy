@@ -7,10 +7,15 @@ export default {
   data() {
     return { placeholders: ['薪资', '大疆', '华为', '拼多多内推', '云徙科技'] }
   },
+  methods: {
+    handleClickSearch() {
+      this.$router.push({ name: 'HomeSearch' })
+    },
+  },
 }
 </script>
 <template>
-  <div class="relative mx-1 flex h-[40px] flex-auto items-center overflow-hidden">
+  <div @click="handleClickSearch" class="relative mx-1 flex h-10 flex-auto items-center overflow-hidden">
     <input class="h-7 w-full rounded-full bg-white" />
     <Icon class="absolute ml-2" name="search" size="18" />
     <PlaceHolderTransition class="left-8" :placeholders="placeholders" :duration="1000" />

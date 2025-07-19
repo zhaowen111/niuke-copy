@@ -9,10 +9,11 @@ export default {
   emits: ['delete'],
   computed: {
     sizeStyle() {
+      const size = this.size / 16 + 'rem'
       return {
-        height: this.size + 'px',
-        width: this.size + 'px',
-        lineHeight: this.size + 'px',
+        height: size,
+        width: size,
+        lineHeight: size,
       }
     },
   },

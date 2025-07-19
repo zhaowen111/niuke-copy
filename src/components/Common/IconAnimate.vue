@@ -15,7 +15,7 @@ export default {
   computed: {
     sizeStyle() {
       const size = this.size || 20
-      return { width: size + 'px', height: size + 'px' }
+      return { width: size / 16 + 'rem', height: size / 16 + 'rem' }
     },
   },
   watch: {

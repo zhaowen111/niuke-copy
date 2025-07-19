@@ -44,10 +44,10 @@ export default {
 }
 
 .place-enter-from {
-  transform: translateY(40px);
+  transform: translateY(2.5rem);
 }
 
 .place-leave-to {
-  transform: translateY(-40px);
+  transform: translateY(-2.5rem);
 }
 </style>

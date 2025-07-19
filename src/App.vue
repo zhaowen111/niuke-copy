@@ -4,16 +4,18 @@ import Tabs from '@/packages/Tabs/Tabs.vue'
 import LoadingPage from '@/packages/LoadingPage/LoadingPage.vue'
 import img from '@/assets/icon/loading.jpg'
 import { bottomTabs as tabs } from '@/assets/mock/tabData'
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { keys, useHomeStore } from './stores/store'
+import { adapt, debounce } from './utils/utils'
 //路由
 
 const showLoading = ref(true)
 
 onMounted(() => {
-  // showLoading.value = false
+  adapt(375, 16)
+  alert(`css width:${window.innerWidth},dpr:${window.devicePixelRatio}`)
 })
-
+onUnmounted(() => {})
 const router = useRouter()
 const route = useRoute()
 //处理底部tab栏路由导航
@@ -54,3 +56,4 @@ watch(
     </div>
   </div>
 </template>
+<style></style>

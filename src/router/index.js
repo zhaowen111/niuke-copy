@@ -32,6 +32,7 @@ import Automation from '@/views/Home/Children/Automation.vue'
 import BigDataDev from '@/views/Home/Children/BigDataDev.vue'
 import AddPost from '@/views/Home/Extra/AddPost/AddPost.vue'
 import AboutView from '../views/Business/AboutView.vue'
+import HomeSearch from '@/views/Home/Extra/HomeSearch/HomeSearch.vue'
 
 export const defaultHomeChildPath = 'Recommend'
 export const defaultHomePath = '/home'
@@ -72,6 +73,12 @@ const routes = [
       { path: 'BigDataDev', component: BigDataDev },
       { path: '404', component: NotFound }
     ]
+  },
+  {
+    path: '/HomeSearch',
+    name: "HomeSearch",
+    component: HomeSearch,
+    meta: { fullscreen: true }
   },
   {
     path: '/AddPost',

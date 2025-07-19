@@ -37,7 +37,7 @@ export default {
           <div class="font-semibold">{{ title }}</div>
           <Icon @click="handleClose" class="absolute right-2" name="close" size="18" />
         </header>
-        <div v-if="show" class="overflow-y-scroll" style="height: calc(100% - 2.5rem)">
+        <div v-if="show" class="no-scrollbar overflow-y-scroll" style="height: calc(100% - 2.5rem)">
           <slot></slot>
         </div>
       </div>

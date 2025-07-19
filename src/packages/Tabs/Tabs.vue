@@ -42,15 +42,16 @@ export default defineComponent({
   <div class="flex h-full items-center justify-center overflow-hidden">
     <div
       :key="tab.value"
-      class="max-w-1/3 relative -mt-2 box-border flex flex-auto flex-col items-center text-center text-xs text-[#565759]"
+      class="max-w-1/3 relative box-border flex flex-1 flex-col items-center text-center text-xs text-[#565759]"
       :style="activeTab === tab.value ? style : {}"
       v-for="tab in tabs"
       @click="change(tab)">
-      <IconAnimate :size="60" :active="activeTab === tab.value" :iconName="tab.iconName" />
-      <span class="mt-[-15px] flex scale-75">{{ tab.name }}</span>
+      <!-- 动态图标空白区域太大了，懒得重新制作了：class="-m-2" -->
+      <IconAnimate :size="50" :active="activeTab === tab.value" :iconName="tab.iconName" class="-m-2" />
+      <span>{{ tab.name }}</span>
       <span
         v-if="tab.badge"
-        class="absolute right-[10px] top-[10px] box-border inline-block size-[15px] rounded-[50%] bg-red-600 leading-[15px] text-white">
+        class="absolute right-2.5 top-2.5 box-border inline-block size-4 rounded-[50%] bg-red-600 leading-4 text-white">
         {{ tab.badge }}
       </span>
     </div>

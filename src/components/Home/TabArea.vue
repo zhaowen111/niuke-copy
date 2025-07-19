@@ -47,13 +47,13 @@ export default {
           :key="tab.value"
           :ref="tab.value"
           v-for="(tab, index) in tabs"
-          :class="dashed ? 'custom-dashed-border' : 'rounded-[4px] bg-[#0001]'"
+          :class="dashed ? 'custom-dashed-border' : 'rounded-[0.25rem] bg-[#0001]'"
           class="relative mx-[1.5%] my-1.5 flex w-[30%] items-center justify-center py-1 text-[#333559]">
           {{ tab.name }}
           <div
             v-if="deleteable"
             @click="handleDelete(tab, index)"
-            class="absolute -right-1 -top-1 h-[18px] w-[18px] rotate-45 rounded-full bg-[#0003] text-center leading-[18px] text-white">
+            class="size-4.5 leading-4.5 absolute -right-1 -top-1 rotate-45 rounded-full bg-[#0003] text-center text-white">
             +
           </div>
         </div>
