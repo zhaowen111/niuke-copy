@@ -2,10 +2,12 @@
 import { topics } from '@/assets/mock/posts'
 import DialogCard from '@/packages/Dialog/DialogCard.vue'
 import TouPiao from './TouPiao.vue'
-
+import DeleteBtn from '@/packages/DeleteBtn.vue'
+import Confirm from '@/packages/Confirm.vue'
+Confirm
 export default {
   props: {},
-  components: { DialogCard, TouPiao },
+  components: { DialogCard, TouPiao, DeleteBtn, Confirm },
   data() {
     return {
       title: '',
@@ -14,12 +16,15 @@ export default {
       images: {},
       topics,
       aiImageMinText: 50,
+      // 工具栏1
       featuresA: {
         1: { iconName: 'AI_1', text: 'AI配图', id: 1, open: false },
         2: { iconName: 'toupiao', text: '投票', id: 2, open: false },
         3: { iconName: 'xinzi_1', text: '爆薪资', id: 3, open: false },
         4: { iconName: 'neitui', text: '发内推', id: 4, open: false },
       },
+      vote: null,
+      showConfirmDeleteVote: false,
     }
   },
   computed: {
@@ -58,6 +63,21 @@ export default {
     },
   },
   methods: {
+    // 投票
+    handleVoteUpdate(vote) {
+      console.log(111)
+
+      this.vote = vote
+      this.showToupiao = false
+    },
+    handleDeleteVote() {
+      this.showConfirmDeleteVote = true
+    },
+    handleConfirmDeleteVote() {
+      this.vote = null
+      this.showConfirmDeleteVote = false
+    },
+    //图片上传
     handleAddImage() {
       this.$message('添加图片', 500)
     },
@@ -108,7 +128,7 @@ export default {
       <span class="font-semibold">发动态</span>
       <button class="py-1.25 absolute right-2 rounded-full bg-[#06f4ba] px-4 text-sm text-white">发布</button>
     </header>
-    <!-- content edit area -->
+    <!-- 内容编辑区域 area -->
     <main class="mt-12 px-2">
       <!-- 标题 -->
       <div class="title border-b-1 relative h-8 border-[#eee]">
@@ -121,6 +141,7 @@ export default {
           placeholder="好的标题会让更多人看到哦~" />
         <div class="absolute right-0 top-0 text-[#a7a8aa]">{{ title.length + '/' + maxTitleLength }}</div>
       </div>
+
       <!-- 正文 -->
       <div>
         <textarea
@@ -130,7 +151,8 @@ export default {
           placeholder="此刻的你想和大家分享什么..."
           class="min-h-30 my-2 w-full text-sm leading-6"></textarea>
       </div>
-      <!-- image -->
+
+      <!-- 图片上传 -->
       <div class="grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-5">
         <transition-group name="image">
           <div :key="image.id" v-for="image in images" class="relative aspect-square">
@@ -151,7 +173,22 @@ export default {
           </div>
         </transition-group>
       </div>
+
+      <!-- 额外创建内容的展示区域 -->
+      <div class="mt-4">
+        <!-- 投票内容 -->
+        <div
+          @click="showToupiao = true"
+          v-if="vote"
+          class="centery relative mt-2 box-border h-10 rounded-sm bg-[#eee] px-2">
+          <Icon name="vote"></Icon>
+          <span class="ml-1 text-sm">投票</span>
+          <DeleteBtn @delete="handleDeleteVote" class="expand-click-area-3 right-3" size="16" />
+        </div>
+      </div>
     </main>
+
+    <!-- 页脚工具栏区域 -->
     <footer class="fixed bottom-0 left-0 box-border w-full p-2">
       <!-- 工具栏一 -->
       <div class="flex items-center">
@@ -194,11 +231,12 @@ export default {
       <button class="linear-bg h-10 w-full rounded-full font-semibold text-white">发布</button>
     </footer>
 
+    <!-- 弹窗内容区域 -->
     <DialogCard title="AI配图" :show="showAIImage" @close="showAIImage = false">
       <TouPiao></TouPiao>
     </DialogCard>
     <DialogCard title="发布投票" :show="showToupiao" @close="showToupiao = false">
-      <TouPiao></TouPiao>
+      <TouPiao :votes="vote" @update="handleVoteUpdate"></TouPiao>
     </DialogCard>
     <DialogCard title="爆薪资" :show="showBaoxinzi" @close="showBaoxinzi = false">
       <TouPiao></TouPiao>
@@ -206,6 +244,11 @@ export default {
     <DialogCard title="发内推" :show="showNeitui" @close="showNeitui = false">
       <TouPiao></TouPiao>
     </DialogCard>
+    <Confirm
+      :show="showConfirmDeleteVote"
+      title="是否删除当前投票"
+      @cancel="showConfirmDeleteVote = false"
+      @sure="handleConfirmDeleteVote" />
   </div>
 </template>
 <style scoped>

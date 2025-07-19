@@ -97,7 +97,7 @@ export default {
     <main class="text-sm">
       <header class="my-1 font-semibold">{{ post.title }}</header>
       <div>{{ post.content }}</div>
-      <div class="h-50 skeleton-item my-2">
+      <div class="h-50 my-2" :class="!loaded && 'skeleton-item'">
         <img class="h-full" :src="post.img" v-show="loaded" @load="handleLoad" />
       </div>
     </main>

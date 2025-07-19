@@ -38,6 +38,7 @@ export default {
       <main class="mx-4 rounded-[8px] bg-white p-2">
         <div>
           <div
+            :key="item.type"
             @click.stop="handleReduce(item.type)"
             class="border-b-[0.5px] border-b-[#eee] p-2 last:border-0"
             v-for="item in values">

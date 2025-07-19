@@ -1,6 +1,6 @@
 <script>
 export default {
-  props: { show: Boolean },
+  props: { show: Boolean, inner: Boolean },
   emits: ['close'],
   data() {
     return {}
@@ -8,8 +8,9 @@ export default {
 }
 </script>
 <template>
-  <teleport to="body">
-    <div v-show="show" class="fixed top-0 left-0 z-10 h-dvh w-dvw bg-[#0009]" @click.stop="$emit('close')"></div>
+  <teleport v-if="!inner" to="body">
+    <div v-show="show" class="fixed left-0 top-0 z-10 h-dvh w-dvw bg-[#0009]" @click.stop="$emit('close')"></div>
   </teleport>
+  <div v-show="show && inner" class="fixed left-0 top-0 z-10 h-dvh w-dvw bg-[#0009]" @click.stop="$emit('close')"></div>
 </template>
 <style></style>

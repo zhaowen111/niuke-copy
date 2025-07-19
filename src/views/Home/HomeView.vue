@@ -195,7 +195,7 @@ export default {
 .right-enter-active,
 .left-leave-active,
 .left-enter-active {
-  transition: transform 0.3s;
+  transition: transform 0.1s;
 }
 
 .left-enter-from {

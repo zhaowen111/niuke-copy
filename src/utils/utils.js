@@ -44,9 +44,13 @@ export function isNum(value) {
   return typeof value === 'number'
 }
 
+export function isStrNotNull(value) {
+  return isStr(value) && value.length > 0
+}
 
-
-
+export function isNumNotNull(value) {
+  return isNum(value) && value > 0
+}
 
 //节流
 export function throttle(fn, limit = 250) {
