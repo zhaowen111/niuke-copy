@@ -1,10 +1,13 @@
-# vue-components
+# vue3 仿写牛客网前端(持续实现中...)
 
-This template should help get you started developing with Vue 3 in Vite.
+- 仅供前端学习交流，请勿用于其他用途。
+- 技术栈：Vue3 pinia vue router
+- 只实现前端部分，无任何后端实现，示例数据使用简单的mock数据。可直接部署静态网站。
+- 牛客网整个app内容非常丰富，时间有限，加上仿写的目的是练习实践，所以只实现比较有代表性的技术/功能点
 
 ## Recommended IDE Setup
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+[VSCode](https://code.visualstudio.com/) + [vue offical](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
 ## Customize configuration
 
