@@ -19,6 +19,12 @@ export default {
       return this.placeholders[this.index]
     },
   },
+  watch: {
+    placeholderText(newVal) {
+      // 当placeholder变化时发出事件
+      this.$emit('placeholder-change', newVal)
+    },
+  },
   mounted() {
     ++this.index
     this.intervalId = setInterval(() => {
