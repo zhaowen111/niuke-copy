@@ -9,6 +9,18 @@
   - Vue Router
   - Vite
 
+## 包含的技术点：
+- rem等比缩放适配不同屏幕
+- 底部tab路由、页面内二级路由的布局适配+可配置页面全屏
+- 路由切换动画（与切换方向保持一致）
+- 路由切换时保持页面状态
+- 元素跨列表移动动画
+- 图片上传预览
+- 图片load完成前显示骨架屏
+- svg图标自动引入、复杂动画效果图标
+- placeholder循环切换
+
+
 ## Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) + [vue offical](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
