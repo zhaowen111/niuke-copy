@@ -51,7 +51,7 @@ export default defineComponent({
       <span>{{ tab.name }}</span>
       <span
         v-if="tab.badge"
-        class="absolute right-2.5 top-2.5 box-border inline-block size-4 rounded-[50%] bg-red-600 leading-4 text-white">
+        class="absolute right-1/2 top-0 box-border inline-block size-4 translate-x-[2rem] rounded-[50%] bg-red-600 leading-4 text-white">
         {{ tab.badge }}
       </span>
     </div>

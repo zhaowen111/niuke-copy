@@ -1,4 +1,6 @@
 <script>
+import { nextTick, toRaw } from 'vue'
+
 // 拖拽、
 export default {
   props: {
@@ -35,13 +37,13 @@ export default {
 }
 </script>
 <template>
-  <div class="tab-area">
+  <div class="tab-area" :key="title">
     <header class="my-2 flex items-center justify-start">
       <div class="mx-2 font-semibold">{{ title }}</div>
       <span class="text-sm text-[#545859]">{{ tip }}</span>
     </header>
     <div class="flex flex-wrap items-center justify-start">
-      <transition-group :duration="300">
+      <transition-group name="list" :duration="200">
         <div
           @click="handleClick(tab, index)"
           :key="tab.value"
@@ -58,7 +60,9 @@ export default {
           </div>
         </div>
       </transition-group>
-      <div v-if="extraRef" :ref="extraRef" class="mx-[1.5%] my-1 py-1"></div>
+      <div v-if="extraRef" class="mx-[1.5%] self-start">
+        <div :ref="extraRef"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -66,5 +70,9 @@ export default {
 .custom-dashed-border {
   background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='6' ry='6' stroke='%23545859FF' stroke-width='1' stroke-dasharray='5%2c5' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
   border-radius: 6px;
+}
+
+.list-move {
+  transition: all 0.2s;
 }
 </style>

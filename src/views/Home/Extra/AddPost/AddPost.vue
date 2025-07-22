@@ -134,7 +134,7 @@ export default {
       <div class="title border-b-1 relative h-8 border-[#eee]">
         <input
           v-model="title"
-          class="w-full"
+          class="box-border w-full pr-12"
           :class="title && 'font-semibold'"
           :maxlength="maxTitleLength"
           type="text"

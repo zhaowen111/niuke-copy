@@ -16,7 +16,7 @@ export default {
       tabAreaData: [],
       menuStyle: null,
       showTabArea: false,
-      duration: 0.3,
+      duration: 0.2,
       targets: {},
       childPath: '',
       tabChangeDirection: 'right',
@@ -86,15 +86,17 @@ export default {
       tab.has = true
 
       this.tabAreaData[1][tab.type].tabs.splice(index, 1)
-      await this.move(cur, this.targets[tabType[MyTabId].value], this.duration)
-      this.tabAreaData[0].tabs.push(tab)
+      this.move(cur, this.targets[tabType[MyTabId].value], this.duration).then(() => {
+        this.tabAreaData[0].tabs.push(tab)
+      })
     },
-    async handleDelete(tab, index, cur, target) {
+    handleDelete(tab, index, cur, target) {
       this.targets[tabType[MyTabId]] = target
       tab.has = false
       this.tabAreaData[0].tabs.splice(index, 1)
-      await this.move(cur, this.targets[tab.type], this.duration)
-      this.tabAreaData[1][tab.type].tabs.push(tab)
+      this.move(cur, this.targets[tab.type], this.duration).then(() => {
+        this.tabAreaData[1][tab.type].tabs.push(tab)
+      })
     },
     handleEditedTab() {
       const my = this.tabAreaData[0]
@@ -109,23 +111,23 @@ export default {
     handleInit(ref, target) {
       this.targets[ref] = target
     },
-    async exchangeItem(itemIndex, sourceRef, targetRef, sourceList, targetList) {
-      const sourceData = sourceList.splice(itemIndex, 1)[0]
-      const target = this.$refs[targetRef]
-      const cur = this.$refs[sourceRef][0]
-      await this.move(cur, target, this.duration)
-      targetList.push(sourceData)
-    },
-    async move(el, target, duration) {
+    move(el, target, duration) {
       const elRect = el.getBoundingClientRect()
+      el.style.margin = '0px'
+      el.style.position = 'fixed'
       const targetRect = target.getBoundingClientRect()
-      const x = targetRect.left - elRect.left
-      const y = targetRect.top - elRect.top
-      return gsap.to(el, {
-        x,
-        y,
-        duration,
-      })
+      return gsap.fromTo(
+        el,
+        {
+          top: elRect.top,
+          left: elRect.left,
+        },
+        {
+          top: targetRect.top,
+          left: targetRect.left,
+          duration,
+        },
+      )
     },
     handleOpenAddPost() {
       this.$router.push({ name: 'AddPost' })
