@@ -110,3 +110,28 @@ export function adapt(designWidth, rem2px) {
   head.appendChild(st);
   return defaultFontSize
 };
+
+
+
+export function fullscreen(dom) {
+  window.addEventListener('dblclick', () => {
+    const fullscreenElement = document.fullscreenElement || document.webkitFullscreenElement
+
+    if (!fullscreenElement) {
+      if (dom.requestFullscreen) {
+        dom.requestFullscreen()
+      }
+      else if (dom.webkitRequestFullscreen) {
+        dom.webkitRequestFullscreen()
+      }
+    }
+    else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen()
+      }
+      else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen()
+      }
+    }
+  })
+}

@@ -1,3 +1,5 @@
+import { defaultHomeChildPath, defaultThreeChildPath, threeRoutes } from "@/router"
+
 export const MyTabId = 10001
 export const tabType = {
   [MyTabId]: { title: '我的', value: 10001, tip: '可拖拽调整tab顺序', tabs: [] },
@@ -5,12 +7,17 @@ export const tabType = {
   10003: { title: '看岗位', value: 10003, tip: '选择感兴趣的职位', tabs: [] },
 }
 
+
 export const defaultTabs = [
-  { value: '/Attention', name: '关注', type: 10001, pin: true },
-  { value: '/Recommend', name: '推荐', type: 10001, default: true, pin: true },
-  { value: '/AutumnRecruitment', name: '秋招季', type: 10001, pin: true },
-  { value: '/HotList', name: '热榜', type: 10001, pin: true },
+  { value: '/Attention', name: '关注', type: 10001, },
+  { value: '/Recommend', name: '推荐', type: 10001, },
+  { value: '/AutumnRecruitment', name: '秋招季', type: 10001, },
+  { value: '/HotList', name: '热榜', type: 10001, },
 ]
+
+defaultTabs.forEach(item => {
+  item.value.slice(1) === defaultHomeChildPath && (item.default = true)
+})
 
 export const allTabItems = [
   // 看板块（type:1）
@@ -48,3 +55,12 @@ export const bottomTabs = [
   { name: '题库', value: '/test', iconName: 'tiku' },
   { name: '我的', value: '/haha', iconName: 'wode', badge: 1 },
 ]
+
+
+
+
+export const threeTabs = threeRoutes[0].children.map(item => {
+  return { value: "/" + item.path, name: item.path, default: item.value === defaultThreeChildPath };
+})
+threeTabs[0].default = true;
+console.log(threeTabs);

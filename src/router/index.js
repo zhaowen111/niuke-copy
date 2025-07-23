@@ -34,9 +34,20 @@ import AddPost from '@/views/Home/Extra/AddPost/AddPost.vue'
 import AboutView from '../views/Business/AboutView.vue'
 import HomeSearch from '@/views/Home/Extra/HomeSearch/HomeSearch.vue'
 
-export const defaultHomeChildPath = 'Recommend'
-export const defaultHomePath = '/home'
 
+import Page1 from '@/views/Business/Children/page1.vue'
+import Page2 from '@/views/Business/Children/page2.vue'
+import Page3 from '@/views/Business/Children/page3.vue'
+import Page4 from '@/views/Business/Children/page4.vue'
+import Page5 from '@/views/Business/Children/page5.vue'
+import Page6 from '@/views/Business/Children/page6.vue'
+import Page7 from '@/views/Business/Children/page7.vue'
+import Page8 from '@/views/Business/Children/page8.vue'
+import Page9 from '@/views/Business/Children/page9.vue'
+import Page10 from '@/views/Business/Children/page10.vue'
+
+export const defaultHomeChildPath = 'Attention'
+export const defaultHomePath = '/home'
 const routes = [
   {
     path: '/',
@@ -86,10 +97,7 @@ const routes = [
     component: AddPost,
     meta: { fullscreen: true }
   },
-  {
-    path: '/about',
-    component: AboutView,
-  },
+
   {
     path: '/animation',
     component: AnimationExp,
@@ -101,9 +109,33 @@ const routes = [
   { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
 ]
 
+
+export const defaultThreeChildPath = 'page1'
+export const threeRoutes = [
+  {
+    path: '/about',
+    component: AboutView,
+    children: [
+      { path: 'page1', component: Page1 },
+      { path: 'page2', component: Page2 },
+      { path: 'page3', component: Page3 },
+      { path: 'page4', component: Page4 },
+      { path: 'page5', component: Page5 },
+      { path: 'page6', component: Page6 },
+      { path: 'page7', component: Page7 },
+      { path: 'page8', component: Page8 },
+      { path: 'page9', component: Page9 },
+      { path: 'page10', component: Page10 },
+    ]
+  },
+]
+
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
-  routes
+  routes: [
+    ...threeRoutes,
+    ...routes
+  ]
 })
 
 router.beforeEach((to, from) => {
